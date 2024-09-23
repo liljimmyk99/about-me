@@ -1,51 +1,57 @@
 ---
 # Banner
 banner:
-  title: "The Ultimate Starter Template You Need To Start Your Hugo Project"
-  content: "Hugoplate is a free starter template built with Hugo and TailwindCSS, providing everything you need to jumpstart your Hugo project and save valuable time."
-  image: "/images/banner.png"
+  title: "James B Kane IV"
+  content: "I am an iOS Developer and Technical Project Manager (TPM) on the Ford Credit Mobile Platform team.  Additionally inside of Ford I am apart of the Enterprise Technology Ford College Graduate program (ETFCG)."
+  image: "/images/body_shot.jpg"
   button:
     enable: true
-    label: "Get Started For Free"
-    link: "https://github.com/zeon-studio/hugoplate"
+    label: "Skip to LinkedIn"
+    link: "https://www.linkedin.com/in/jamesbkaneiv/"
 
 # Features
 features:
-  - title: "What's Included in Hugoplate"
+  - title: "What am I up to?"
     image: "/images/service-1.png"
-    content: "Hugoplate is a comprehensive starter template that includes everything you need to get started with your Hugo project. What's Included in Hugoplate"
+    content: "Aside from my full-time job, I am involved in quite a few activities in the community.  I enjoy giving back in any way I can"
     bulletpoints:
-      - "10+ Pre-build pages"
-      - "95+ Google Pagespeed Score"
-      - "Build with Hugo and TailwindCSS for easy and customizable styling"
-      - "Fully responsive on all devices"
-      - "SEO-optimized for better search engine rankings"
-      - "**Open-source and free** for personal and commercial use"
+      - "**2024-2025** ETFCG Program Co-Lead"
+      - "**2023-2024** ETFCG Finance Lead"
+      - "**2023-Current** Team 5401 Programming Mentor"
+      - "**2022-Current** Philadelphia Eagles Concerige Staff"
+      - "**2022-Current** Action Karate Drexel Hill Senior Instructor"
+      - "**2024-Current** Action Karate Hamilton Senior Instructor"
+      - "**2024-Current** Calvary Chapel of Philadelphia Koinia Cafe volunteer"
+      - "**2024** Bensalem FIRST FRC District Event Volunteer Coordinator" 
     button:
-      enable: false
-      label: "Get Started Now"
+      enable: true
+      label: "Go to Resume"
       link: "#"
 
-  - title: "Discover the Key Features Of Hugo"
+  - title: "Technical Experience"
     image: "/images/service-2.png"
     content: "Hugo is an all-in-one web framework for building fast, content-focused websites. It offers a range of exciting features for developers and website creators. Some of the key features are:"
     bulletpoints:
-      - "Zero JS, by default: No JavaScript runtime overhead to slow you down."
-      - "Customizable: Tailwind, MDX, and 100+ other integrations to choose from."
-      - "UI-agnostic: Supports React, Preact, Svelte, Vue, Solid, Lit and more."
+      - "Golang"
+      - "SwiftUI"
+      - "Git"
+      - "Jira"
+      - "BitRise"
+      - "OpenWC"
+      - "React/TSX"
     button:
-      enable: true
+      enable: false
       label: "Get Started Now"
       link: "https://github.com/zeon-studio/hugoplate"
 
-  - title: "The Top Reasons to Choose Hugo for Your Hugo Project"
+  - title: "Non-Technical Skills"
     image: "/images/service-3.png"
     content: "With Hugo, you can build modern and content-focused websites without sacrificing performance or ease of use."
     bulletpoints:
-      - "Instantly load static sites for better user experience and SEO."
-      - "Intuitive syntax and support for popular frameworks make learning and using Hugo a breeze."
-      - "Use any front-end library or framework, or build custom components, for any project size."
-      - "Built on cutting-edge technology to keep your projects up-to-date with the latest web standards."
+      - "Communicator: I have been in customer service for over 5 years.  Customers both external and internal to organizations"
+      - "Instructor: I have taught karate to 3-year-olds through adults for 6 years and was a peer tutor in college for 3 years"
+      - "Mentor: I've been a mentor to my high school robotics team and to my karate students.  Providing both professional and personal advise"
+      - "Leadership: I've been in a position of leadership since high school.  Whether that's Robotics Program Manager, Volunteer Coordinator, Tutoring Co-Coordinator, Senior Instructor, TPM, and now Co-Lead of the ETFCG program with over 300 members.  Many of these positions I've been elected/appointed to by peers"
     button:
       enable: false
       label: ""
