@@ -72,3 +72,9 @@ main {
     @apply dark:hover:text-dark no-underline hover:text-white #{!important};
   }
 }
+
+.image-description{
+  padding-left: 20px;
+  padding-right: 20px;
+  text-align: center;
+}
