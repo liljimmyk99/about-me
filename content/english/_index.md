@@ -12,32 +12,34 @@ banner:
 # Features
 features:
   - title: "What am I up to?"
-    image: "/images/service-1.png"
+    image: "/images/EaglesPortrait.jpg"
+    imageDescription: "Jimmy standing in the endzone of Lincoln Financial Field after an Eagles game in 2023"
     content: "Aside from my full-time job, I am involved in quite a few activities in the community.  I enjoy giving back in any way I can"
     bulletpoints:
-      - "**2024-2025** ETFCG Program Co-Lead"
+      - "**2024-Current** ETFCG Program Co-Lead"
       - "**2023-2024** ETFCG Finance Lead"
       - "**2023-Current** Team 5401 Programming Mentor"
       - "**2022-Current** Philadelphia Eagles Concerige Staff"
       - "**2022-Current** Action Karate Drexel Hill Senior Instructor"
       - "**2024-Current** Action Karate Hamilton Senior Instructor"
       - "**2024-Current** Calvary Chapel of Philadelphia Koinia Cafe volunteer"
-      - "**2024** Bensalem FIRST FRC District Event Volunteer Coordinator" 
+      - "**2024 & 2025** Bensalem FIRST FRC District Event Volunteer Coordinator" 
     button:
       enable: true
       label: "Go to Resume"
       link: "#"
 
   - title: "Technical Experience"
-    image: "/images/service-2.png"
-    content: "Hugo is an all-in-one web framework for building fast, content-focused websites. It offers a range of exciting features for developers and website creators. Some of the key features are:"
+    image: "/images/Bensalem23.jpg"
+    imageDescription: "Jimmy receiving the Outstanding Volunteer Award at the 2023 Bensalem FIRST Robotics District Event"
+    content: "Through many internships and co-ops I have worked with a variety of tech stacks and project types.  Here are a list of a few langauges and tools I have experience with:"
     bulletpoints:
       - "Golang"
       - "SwiftUI"
-      - "Git"
-      - "Jira"
-      - "BitRise"
-      - "OpenWC"
+      - "Git & GitHub"
+      - "Jira & Confluence"
+      - "BitRise.io & GitHub Actions"
+      - "OpenWC Web Components"
       - "React/TSX"
     button:
       enable: false
@@ -45,8 +47,9 @@ features:
       link: "https://github.com/zeon-studio/hugoplate"
 
   - title: "Non-Technical Skills"
-    image: "/images/service-3.png"
-    content: "With Hugo, you can build modern and content-focused websites without sacrificing performance or ease of use."
+    image: "/images/AKDH.jpg"
+    imageDescription: "Jimmy standing with when the other Sensai's at Action Karate Drexel Hill after he earned the rank of Sensai upon receiving his Third Degree Black Belt in American Kempo karate."
+    content: "Aside from strictly technical roles I have developed many interpersonal communication skills in a variety of areas."
     bulletpoints:
       - "Communicator: I have been in customer service for over 5 years.  Customers both external and internal to organizations"
       - "Instructor: I have taught karate to 3-year-olds through adults for 6 years and was a peer tutor in college for 3 years"
