@@ -1,13 +1,67 @@
 {{ define "main" }}
-  <section class="section-sm">
-    <div class="container">
-      <div class="row justify-center">
-        <div class="md:col-10 lg:col-7 text-center">
-          {{ partial "image" (dict "Src" .Params.image "Context" .Page "Alt" .Title "Class" "mx-auto mb-6" "Size" "200x200") }}
-          <h2 class="h3 mb-6">{{ .Title }}</h2>
-          <div class="content">{{ .Content }}</div>
+<section class="section-sm">
+  <div class="container">
+    <div class="row justify-center">
+      <div class="md:col-10 lg:col-7 text-center">
+        <!-- Profile Image Section -->
+        {{ partial "image" (dict "Src" .Params.image "Context" .Page "Alt" .Title "Class" "mx-auto mb-6" "Size" "200x200") }}
+
+        <!-- Name and Title -->
+        <h1 class="h3 mb-4">{{ .Title }}</h1>
+        <p class="lead">{{ .Params.subtitle }}</p>
+
+        <!-- Contact Information -->
+        <div class="mb-6">
+          <p><b>Email:</b> {{ .Params.email }}</p>
+          <p><b>Location:</b> {{ .Params.location }}</p>
+        </div>
+
+        <!-- About Section -->
+        <div class="content mb-6">
+          <h3 class="h4">About Me</h3>
+          <p>{{ .Params.about }}</p>
+        </div>
+
+        <!-- Skills Section -->
+        <div class="content mb-6">
+          <h3 class="h4">Skills</h3>
+          <ul class="list-inline" style="list-style-position: inside">
+            {{ range .Params.skills }}
+              <li class="list-inline-item" style="list-style-type: square">{{ . }}</li>
+            {{ end }}
+          </ul>
+        </div>
+
+        <!-- Work Experience Section -->
+        <div class="content mb-6">
+          <h3 class="h4">Work Experience</h3>
+          <div>
+            {{ range .Params.workExperience }}
+              <div>
+                <h5>{{ .position }} <small class="text-muted">{{ .company }}</small></h5>
+                <p class="text-muted">{{ .duration }}</p>
+                <p>{{ .description }}</p>
+              </div>
+            {{ end }}
+          </div>
+        </div>
+
+        <!-- Education Section -->
+        <div class="content mb-6">
+          <h3 class="h4">Education</h3>
+          <ul style="list-style-type: none">
+            {{ range .Params.education }}
+              <li>
+                <h5>{{ .degree }} <small class="text-muted">{{ .institution }}</small></h5>
+                <p class="text-muted">Graduation Year: {{ .graduationYear }}</p>
+                <p>{{ .details }}</p>
+              </li>
+            {{ end }}
+          </ul>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
+
 {{ end }}
