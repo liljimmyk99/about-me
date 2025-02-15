@@ -2,7 +2,7 @@
 title: "Utilizing Code Documentation Comments"
 meta_title: ""
 description: ""
-date: 2022-04-04T05:00:00Z
+date: 2025-02-15T05:00:00Z
 image: "/images/CodeDocumentation.png"
 categories: ["How Tos"]
 author: "Jimmy Kane"
@@ -10,4 +10,11 @@ tags: ["Swift", "CI/CD"]
 draft: false
 ---
 
-Code can be very clean and organized or be an absolute rats nest!
+Imagine getting ready to work on or use a new dependency/tool, what do they all have in common?  A README file which gives pertainent information about the library in question. How detailed that README is, that depends greatly on the developer/team in question.  Some APIs/CLIs have a `--help` flag you can pass in and get instructions that way, however that requires installing the tool and even then it may not be super detailed.  The next elevation from a simple README is a code documentation site such as [oh-my-zsh](https://ohmyz.sh/), [Tuist](https://docs.tuist.dev/en/), and event [React](https://react.dev/).
+
+Documentation websites allow developers to be verbose in their code documentation, which gives end-users the most amount of detail possible about the library.  There becomes a problem though, in my use case my team are Mobile App Developers and Website Development isn't super our specality nor would it be easy to get approval from Product or Engineering Manager.  We would need a way to somehow generate a website with the least amount of effort and code, preferably without maintaining the under-the-hood HTML/CS/JS.  
+
+Way back in the Java glory days, you were able to turn code comments into a static website for every class as well as functions and attributes in set class.  The problem? The website is ugly and a bit dated & the format of the website was pretty locked down.  Many years later in the modern world there are static site generators that only require the editing of markdown files (_***cough cough*** what I am using for this very website_), however the underlying HTML/CSS/JS would still need to be maintained in the repo of whatever your CLI tool is.  The solution is to combine these two ideas, code comments and mark down files to generate a website.  For iOS developers like me, Apple has created a SDK called [Swift DocC](https://www.swift.org/documentation/docc/) during [WWDC 2023](https://developer.apple.com/videos/play/wwdc2023/10244) which accomplishes just that!
+
+Swift DocC allows you to use documentation comments (`///`) on public structures & classes as well as markdown files in a Documentation Catalog
+
