@@ -25,11 +25,26 @@
         <!-- Skills Section -->
         <div class="content mb-6">
           <h3 class="h4">Skills</h3>
-          <ul class="list-inline" style="list-style-position: inside">
-            {{ range .Params.skills }}
-              <li class="list-inline-item" style="list-style-type: square">{{ . }}</li>
-            {{ end }}
-          </ul>
+          <table class="w-full table-fixed">
+            <tbody>
+              {{ $cols := 4 }}
+              {{ range $i, $skill := .Params.skills }}
+          {{ if eq (mod $i $cols) 0 }}<tr>{{ end }}
+            <td class="align-top text-center" style="padding:0.25rem 0.5rem; list-style-type: none;">
+              {{ $skill }}
+            </td>
+          {{ if eq (mod (add $i 1) $cols) 0 }} </tr> {{ end }}
+              {{ end }}
+
+              {{ $rem := mod (len .Params.skills) $cols }}
+              {{ if and (gt $rem 0) (lt $rem $cols) }}
+          {{ range seq 1 (sub $cols $rem) }}
+            <td></td>
+          {{ end }}
+          </tr>
+              {{ end }}
+            </tbody>
+          </table>
         </div>
 
         <!-- Work Experience Section -->

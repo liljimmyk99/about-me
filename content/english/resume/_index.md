@@ -6,14 +6,14 @@ email: "jamesbkaneiv@gmail.com"
 location: "Bensalem, PA"
 about: "A well-rounded software engineer with experience in API, Front-End web, and mobile iOS development.  Proficient in JavaScript, SwiftUI, GoLang, and project management tools like JIRA."
 skills:
-  - JavaScript
-  - React
-  - HTML/CSS
-  - OpenWC Web Components
-  - SwiftUI
-  - Tuist
   - BitRise.io
   - Git
+  - GraphQL
+  - JavaScript
+  - OpenWC
+  - React
+  - SwiftUI
+  - Tuist
 workExperience:
   - position: "Mobile Platform Engineer"
     company: "Ford Motor Credit Company"
