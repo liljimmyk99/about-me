@@ -1,9 +1,7 @@
-<h1 align="center">Hugo + Tailwind CSS Starter and Boilerplate</h1>
-
-<p align="center">Hugoplate is a free starter template built with Hugo, and TailwindCSS, providing everything you need to jumpstart your Hugo project and save valuable time.</p>
+<h1 align="center">Hugo + Tailwind CSS Portfolio Site</h1>
 
 <p align="center">Made with ♥ by <a href="https://zeon.studio/"> Zeon Studio</a></p>
-<p align=center> If you find this project useful, please give it a ⭐ to show your support.</p>
+<p align=center> If you find this project useful, please give it a ⭐ to show your support to the original author.</p>
 
 <h2 align="center"> <a target="_blank" href="https://zeon.studio/preview?project=hugoplate" rel="nofollow">👀 Demo</a> | <a  target="_blank" href="https://pagespeed.web.dev/analysis/https-hugoplate-netlify-app/6lyxjw6t4r?form_factor=desktop">Page Speed (95+)🚀</a>
 </h2>
@@ -26,42 +24,6 @@
   </a>
 </p>
 
-## 🎁 What's Included
-
-We have included almost everything you need to start your Hugo project. Let's see what's included in this template:
-
-### 📌 Key Features
-
-- 👥 Multi-Authors
-- 🎯 Similar Posts Suggestion
-- 🔍 Search Functionality
-- 🌑 Dark Mode
-- 🏷️ Tags & Categories
-- 🔗 Netlify setting pre-configured
-- 📞 Support contact form
-- 📱 Fully responsive
-- 📝 Write and update content in Markdown
-- 💬 Disqus Comment
-- 🔳 Syntax Highlighting
-
-### 📄 15+ Pre-designed Pages
-
-- 🏠 Homepage
-- 👤 About
-- 📞 Contact
-- 👥 Authors
-- 👤 Author Single
-- 📝 Blog
-- 📝 Blog Single
-- 🚫 Custom 404
-- 💡 Elements
-- 📄 Privacy Policy
-- 🏷️ Tags
-- 🏷️ Tag Single
-- 🗂️ Categories
-- 🗂️ Category Single
-- 🔍 Search
-
 ### 📦 Tech Stack
 
 - [Hugo](https://gohugo.io/)
@@ -83,11 +45,11 @@ We have included almost everything you need to start your Hugo project. Let's se
 
 ## 🚀 Getting Started
 
-First you need to [clone](https://github.com/zeon-studio/hugoplate) or [download](https://github.com/zeon-studio/hugoplate/archive/refs/heads/main.zip) the template repository, and then let's get started with the following process:
+First you need to [clone](https://github.com/liljimmyk99/about-me.git) this repository, and then let's get started with the following process:
 
 ### ⚙️ Prerequisites
 
-To start using this template, you need to have some prerequisites installed on your machine.
+To start using this project, you need to have some prerequisites installed on your machine.
 
 - [Hugo Extended v0.124+](https://gohugo.io/installation/)
 - [Node v20+](https://nodejs.org/en/download/)
@@ -109,6 +71,10 @@ Install all the dependencies using the following command.
 npm install
 ```
 
+### 👉 Updating BaseURL
+
+If running this locally, open the `hugo.toml` and change `baseURL` from `/about-me` to `/` to see the page locally.  If you are planning to utilize this in GitHub pages, change the name to your repo.
+
 ### 👉 Development Command
 
 Start the development server using the following command.
@@ -116,38 +82,6 @@ Start the development server using the following command.
 ```bash
 npm run dev
 ```
-
-### 🎬 Still Confused? Watch a Quick Video
-
-https://github.com/zeon-studio/hugoplate/assets/58769763/c260c0ae-91be-42ce-b8db-aa7f11f777bd
-
----
-
-## 📝 Customization
-
-This template has been designed with a lot of customization options in mind. You can customize almost anything you want, including:
-
-### 👉 Site Config
-
-You can change the site title, base URL, language, theme, plugins, and more from the `hugo.toml` file.
-
-### 👉 Site Params
-
-You can customize all the parameters from the `config/_default/params.toml` file. This includes the logo, favicon, search, SEO metadata, and more.
-
-### 👉 Colors and Fonts
-
-You can change the colors and fonts from the `data/theme.json` file. This includes the primary color, secondary color, font family, and font size.
-
-### 👉 Social Links
-
-You can change the social links from the `data/social.json` file. Add your social links here, and they will automatically be displayed on the site.
-
----
-
-## 🛠 Advanced Usage
-
-We have added some custom scripts to make your life easier. You can use these scripts to help you with your development.
 
 ### 👉 Update Theme
 
