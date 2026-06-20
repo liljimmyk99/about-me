@@ -3,7 +3,7 @@
 banner:
   title: "James B Kane IV"
   content: "I am an iOS Developer and Technical Project Manager (TPM) on the Ford Credit Mobile Platform team.  Additionally inside of Ford I am apart of the Enterprise Technology Ford College Graduate program (ETFCG)."
-  image: "/images/body_shot.jpg"
+  image: "/images/EaglesFieldPhoto.jpg"
   button:
     enable: true
     label: "Skip to LinkedIn"
@@ -48,13 +48,13 @@ features:
 
   - title: "Non-Technical Skills"
     image: "/images/AKDH.jpg"
-    imageDescription: "Jimmy standing with when the other Sensai's at Action Karate Drexel Hill after he earned the rank of Sensai upon receiving his Third Degree Black Belt in American Kempo karate."
+    imageDescription: "Jimmy standing with the other Sensai's at Action Karate Drexel Hill after he earned the rank of Sensai upon receiving his Third Degree Black Belt in American Kempo karate."
     content: "Aside from strictly technical roles I have developed many interpersonal communication skills in a variety of areas."
     bulletpoints:
-      - "Communicator: I have been in customer service for over 5 years.  Customers both external and internal to organizations"
-      - "Instructor: I have taught karate to 3-year-olds through adults for 6 years and was a peer tutor in college for 3 years"
-      - "Mentor: I've been a mentor to my high school robotics team and to my karate students.  Providing both professional and personal advise"
-      - "Leadership: I've been in a position of leadership since high school.  Whether that's Robotics Program Manager, Volunteer Coordinator, Tutoring Co-Coordinator, Senior Instructor, TPM, and now Co-Lead of the ETFCG program with over 300 members.  Many of these positions I've been elected/appointed to by peers"
+      - "Communicator: I have been in customer service for over 5 years.  Customers both external and internal to organizations I worked for."
+      - "Instructor: I have taught karate to 3-year-olds through adults for 6 years and was a peer tutor in college for 3 years.  I now serve as a Senior High Bible Study Leader."
+      - "Mentor: I've been a mentor to my high school robotics team and to my karate students.  Providing both professional and personal advise."
+      - "Leadership: I've been in a position of leadership since high school.  Whether that's Robotics Program Manager, Volunteer Coordinator, Tutoring Co-Coordinator, Senior Instructor, TPM, and recently as Co-Lead of the ETFCG program with over 250 members.  Many of these positions I've been elected/appointed to by peers"
     button:
       enable: false
       label: ""
