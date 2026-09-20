@@ -15,7 +15,7 @@ skills:
   - SwiftUI
   - Tuist
 workExperience:
-  - position: "Junior iOS Software Engineer"
+  - position: "iOS Software Engineer"
     company: "Ford Motor Credit Company"
     duration: "January 2025 - Present"
     description: "Develop, maintain, and refactor the Ford Credit Mobile Application.  Currently, my work has centered around standardizing the codebase.  This has resulted in me creating a Development Style Guide, creating GitHub Co-Pilot Instructions to review PRs and request changes when code does not conform to the Style Guide, and utilizing AI to refactor the existing code to comport to the Style Guide."
