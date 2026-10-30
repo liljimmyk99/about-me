@@ -27,7 +27,7 @@ features:
     button:
       enable: true
       label: "Go to Resume"
-      link: "#"
+      link: "resume"
 
   - title: "Technical Experience"
     image: "/images/Bensalem23.jpg"
