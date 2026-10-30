@@ -1,7 +1,7 @@
 ---
 title: "James Kane"
 subtitle: "Mobile Platform Engineer"
-image: "images/john-doe.jpg"
+image: "images/HeadShot.jpg"
 email: "jamesbkaneiv@gmail.com"
 location: "Bensalem, PA"
 about: "A well-rounded software engineer with experience in API, Front-End web, and mobile iOS development.  Proficient in JavaScript, SwiftUI, GoLang, and project management tools like JIRA & Confluence."

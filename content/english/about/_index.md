@@ -1,8 +1,8 @@
 ---
 title: "Hey, I am Jimmy Kane!"
 meta_title: "About"
-description: "this is meta description"
-image: "/images/Headshot.jpg"
+description: "About James Kane: community volunteer, FIRST Robotics mentor and iOS developer from Bensalem, PA."
+image: "/images/HeadShot.jpg"
 draft: false
 ---
 
