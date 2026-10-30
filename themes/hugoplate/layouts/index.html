@@ -11,22 +11,21 @@
             <p class="mb-8">
               {{ .content | markdownify }}
             </p>
-            {{ with .button }}
-              {{ if .enable }}
+            <div class="flex flex-wrap justify-center gap-4">
+              {{ range $i, $b := .buttons }}
                 <a
-                  class="btn btn-primary"
-                  href="{{ .link | absURL }}"
-                  {{ if strings.HasPrefix .link `http` }}
+                  class="btn {{ if eq $i 0 }}btn-primary{{ else }}btn-outline-primary{{ end }}"
+                  href="{{ $b.link | absURL }}"
+                  {{ if strings.HasPrefix $b.link `http` }}
                     target="_blank" rel="noopener"
                   {{ end }}>
-                  {{ .label }}
-                  <i class="fa fa-arrow-right pl-2"></i>
+                  {{ $b.label }}
                 </a>
               {{ end }}
-            {{ end }}
+            </div>
           </div>
           <div class="col-12">
-            {{ partial "image" (dict "Src" .image "Alt" "Banner image" "Loading" "eager" "Class" "mx-auto lg:!max-w-[800px]" "DisplayXL" "800x" ) }}
+            {{ partial "image" (dict "Src" .image "Alt" (.imageDescription | default "Banner image") "Loading" "eager" "Class" "mx-auto lg:!max-w-[800px]" "DisplayXL" "800x" ) }}
           </div>
         </div>
       </div>
@@ -43,7 +42,7 @@
             class="mb:md-0 {{ if not (modBool $i 2) }}
               md:order-2
             {{ end }} md:col-5 mb-6">
-            {{ partial "image" (dict "Src" .image "Alt" "feature image" "DisplayXL" "520x" "DisplayLG" "425x" "DisplayMD" "360x") }}
+            {{ partial "image" (dict "Src" .image "Alt" (.imageDescription | plainify) "DisplayXL" "520x" "DisplayLG" "425x" "DisplayMD" "360x") }}
             <div class="image-description">
               <p>{{ .imageDescription | markdownify}}</p>
             </div>
@@ -80,4 +79,25 @@
     </section>
   {{ end }}
   <!-- /Features -->
+
+  <!-- Featured writing -->
+  {{ $posts := first 2 (where site.RegularPages "Section" "blog") }}
+  {{ if $posts }}
+    <section class="section-sm">
+      <div class="container">
+        <h2 class="mb-8 text-center">Featured Writing</h2>
+        <div class="row">
+          {{ range $posts }}
+            <div class="md:col-6 mb-14">
+              {{ partial "components/blog-card" . }}
+            </div>
+          {{ end }}
+        </div>
+        <div class="text-center">
+          <a class="btn btn-outline-primary" href="{{ `blog` | relLangURL }}">All posts</a>
+        </div>
+      </div>
+    </section>
+  {{ end }}
+  <!-- /Featured writing -->
 {{ end }}

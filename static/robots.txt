@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://liljimmyk99.github.io/about-me/sitemap.xml
