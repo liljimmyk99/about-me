@@ -5,7 +5,7 @@ description: "How a shared developer style guide, paired with AI-assisted code r
 date: 2026-06-19T11:00:00Z
 image: "/images/StyleGuide.jpg"
 categories: ["Documentation"]
-author: "James Kane IV"
+author: "Jimmy Kane"
 tags: ["Swift", "CI/CD", "AI"]
 draft: false
 ---

@@ -1,5 +1,5 @@
 ---
-title: "James Kane IV"
+title: "James Kane"
 subtitle: "Mobile Platform Engineer"
 image: "images/HeadShot.jpg"
 email: "jamesbkaneiv@gmail.com"

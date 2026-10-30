@@ -5,7 +5,7 @@ description: "Why documentation comments and DocC are worth adopting, and how to
 date: 2025-04-17T21:00:00Z
 image: "/images/CodeDocumentation.png"
 categories: ["How Tos"]
-author: "James Kane IV"
+author: "Jimmy Kane"
 tags: ["Swift", "CI/CD"]
 draft: false
 ---

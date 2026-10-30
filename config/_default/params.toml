@@ -52,8 +52,8 @@ content = "You must replace the **baseURL** in **hugo.toml** file when deploying
 # seo module: https://github.com/gethugothemes/hugo-modules/tree/master/seo-tools/basic-seo
 [metadata]
 keywords = ["James Kane", "iOS Developer", "SwiftUI", "Technical Project Manager", "Ford Credit"]
-description = "Portfolio of James Kane IV: iOS developer and mobile platform engineer at Ford Credit, robotics mentor, and community volunteer."
-author = "James Kane IV"
+description = "Portfolio of James B Kane IV: iOS developer and mobile platform engineer at Ford Credit, robotics mentor, and community volunteer."
+author = "James B Kane IV"
 image = "images/og-image.png"
 
 

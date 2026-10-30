@@ -1,10 +1,10 @@
 ---
 # Banner
 banner:
-  title: "James Kane IV"
+  title: "James B Kane IV"
   content: "I am an iOS Software Engineer on the Ford Credit Mobile Platform team. Within Ford I am also a co-lead of the Enterprise Technology Ford College Graduate program (ETFCG)."
   image: "/images/EaglesFieldPhoto.jpg"
-  imageDescription: "James wearing an Eagles beanie at Lincoln Financial Field while snow falls"
+  imageDescription: "Jimmy wearing an Eagles beanie at Lincoln Financial Field while snow falls"
   buttons:
     - label: "View Resume"
       link: "resume"
@@ -17,7 +17,7 @@ banner:
 features:
   - title: "What am I up to?"
     image: "/images/EaglesPortrait.jpg"
-    imageDescription: "James standing in the endzone of Lincoln Financial Field after an Eagles game in 2023"
+    imageDescription: "Jimmy standing in the endzone of Lincoln Financial Field after an Eagles game in 2023"
     content: "Aside from my full-time job, I am involved in quite a few activities in the community.  I enjoy giving back in any way I can"
     bulletpoints:
       - "**2024-Current** ETFCG Program Co-Lead"
@@ -35,7 +35,7 @@ features:
 
   - title: "Technical Experience"
     image: "/images/Bensalem23.jpg"
-    imageDescription: "James receiving the Outstanding Volunteer Award at the 2023 Bensalem FIRST Robotics District Event"
+    imageDescription: "Jimmy receiving the Outstanding Volunteer Award at the 2023 Bensalem FIRST Robotics District Event"
     content: "Through many internships and co-ops I have worked with a variety of tech stacks and project types.  Here is a list of a few languages and tools I have experience with:"
     bulletpoints:
       - "Golang"
@@ -52,7 +52,7 @@ features:
 
   - title: "Non-Technical Skills"
     image: "/images/AKDH.jpg"
-    imageDescription: "James standing with the other Senseis at Action Karate Drexel Hill after he earned the rank of Sensei upon receiving his Third Degree Black Belt in American Kempo karate."
+    imageDescription: "Jimmy standing with the other Senseis at Action Karate Drexel Hill after he earned the rank of Sensei upon receiving his Third Degree Black Belt in American Kempo karate."
     content: "Aside from strictly technical roles I have developed many interpersonal communication skills in a variety of areas."
     bulletpoints:
       - "Communicator: I have been in customer service for over 5 years.  Customers both external and internal to organizations I worked for."
