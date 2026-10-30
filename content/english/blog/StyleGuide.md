@@ -1,11 +1,11 @@
 ---
 title: "Why create a Developer Style Guide?"
 meta_title: ""
-description: ""
+description: "How a shared developer style guide, paired with AI-assisted code review and refactoring, helped standardize a large iOS codebase."
 date: 2026-06-19T11:00:00Z
 image: "/images/StyleGuide.jpg"
 categories: ["Documentation"]
-author: "Jimmy Kane"
+author: "James Kane IV"
 tags: ["Swift", "CI/CD", "AI"]
 draft: false
 ---

@@ -24,9 +24,6 @@ google_tag_manager = "" # example: G-XXXXXXXXXX
 google_adsense = ""     # example: ca-pub-xxxxxxxxxxxxxxxx
 # custom script on header, example: custom_script= "<script>console.log(\"Hello World\")</script>"
 custom_script = ""
-# copyright
-copyright = "© 2026 James B Kane IV"
-
 # Preloader
 # preloader module: https://github.com/gethugothemes/hugo-modules/tree/master/components/preloader
 [preloader]
@@ -55,8 +52,8 @@ content = "You must replace the **baseURL** in **hugo.toml** file when deploying
 # seo module: https://github.com/gethugothemes/hugo-modules/tree/master/seo-tools/basic-seo
 [metadata]
 keywords = ["James Kane", "iOS Developer", "SwiftUI", "Technical Project Manager", "Ford Credit"]
-description = "Portfolio of James B Kane IV: iOS developer and mobile platform engineer at Ford Credit, robotics mentor, and community volunteer."
-author = "James B Kane IV"
+description = "Portfolio of James Kane IV: iOS developer and mobile platform engineer at Ford Credit, robotics mentor, and community volunteer."
+author = "James Kane IV"
 image = "images/og-image.png"
 
 
