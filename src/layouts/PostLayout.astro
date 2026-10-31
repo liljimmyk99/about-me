@@ -1,0 +1,206 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry, RenderResult } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
+import BoxScore from '../components/BoxScore.astro';
+import PostCard from '../components/PostCard.astro';
+import Tag from '../components/Tag.astro';
+import { formatDate, readTimeMinutes } from '../lib/format';
+import { slugifyTag } from '../lib/content';
+import { withBase } from '../lib/url';
+
+interface Props {
+  post: CollectionEntry<'posts'>;
+  headings: RenderResult['headings'];
+  project?: CollectionEntry<'projects'>;
+  /** Next-older post */
+  previous?: CollectionEntry<'posts'>;
+  /** Next-newer post */
+  next?: CollectionEntry<'posts'>;
+}
+
+const { post, headings, project, previous, next } = Astro.props;
+const { title, dek, date, updated, category, tags, cover, stack } = post.data;
+const minutes = readTimeMinutes(post.body);
+const toc = headings.filter((heading) => heading.depth === 2);
+
+const items = [
+  { label: 'Read time', value: `${minutes} min` },
+  { label: 'Category', value: category },
+  ...(stack?.length ? [{ label: 'Stack', value: stack.join(', ') }] : []),
+  ...(project ? [{ label: 'Related project', value: project.data.name, href: withBase(`/projects/${project.id}/`) }] : []),
+];
+---
+
+<BaseLayout title={title} description={dek}>
+  <article class="container page">
+    <p class="back"><a href={withBase('/blog/')}>&larr; All posts</a></p>
+    <header>
+      <p class="eyebrow">{category}</p>
+      <h1>{title}</h1>
+      <p class="dek">{dek}</p>
+      <p class="byline">
+        <time datetime={date.toISOString()}>{formatDate(date)}</time>
+        <span aria-hidden="true">·</span>
+        <span>{minutes} min read</span>
+        {updated && <><span aria-hidden="true">·</span><span>Updated <time datetime={updated.toISOString()}>{formatDate(updated)}</time></span></>}
+      </p>
+    </header>
+
+    {
+      cover && (
+        <figure class="cover">
+          <Image src={cover.src} alt={cover.alt} widths={[640, 1280, 1920]} sizes="(min-width: 74rem) 1132px, 100vw" loading="eager" />
+        </figure>
+      )
+    }
+
+    <div class="layout">
+      <div class="prose dropcap"><slot /></div>
+
+      <aside class="side" aria-label="About this post">
+        <BoxScore title="Box score" items={items}>
+          {
+            toc.length > 0 && (
+              <nav class="toc" aria-label="In this post">
+                <p class="toc-title">In this post</p>
+                <ul>
+                  {toc.map((heading) => <li><a href={`#${heading.slug}`}>{heading.text}</a></li>)}
+                </ul>
+              </nav>
+            )
+          }
+        </BoxScore>
+        <ul class="tags" aria-label="Tags">
+          {tags.map((tag) => <li><Tag href={withBase(`/blog/tags/${slugifyTag(tag)}/`)}>{tag}</Tag></li>)}
+        </ul>
+      </aside>
+    </div>
+
+    <nav class="pager" aria-label="More posts">
+      {previous ? <PostCard direction="prev" title={previous.data.title} href={`/blog/${previous.id}/`} /> : <span />}
+      {next ? <PostCard direction="next" title={next.data.title} href={`/blog/${next.id}/`} /> : <span />}
+    </nav>
+  </article>
+</BaseLayout>
+
+<style>
+  .page {
+    padding-block: var(--space-6);
+  }
+  .back {
+    margin: 0 0 var(--space-3);
+    font-family: var(--font-label);
+    font-size: var(--text-label-lg);
+    font-weight: 700;
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+  }
+  .eyebrow {
+    margin: 0 0 var(--space-1);
+    font-family: var(--font-label);
+    font-size: var(--text-label-lg);
+    font-weight: 700;
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  h1 {
+    max-width: 20ch;
+    font-size: var(--text-section);
+    overflow-wrap: anywhere;
+  }
+  .dek {
+    max-width: var(--measure);
+    margin: var(--space-2) 0;
+    font-size: var(--text-long);
+    line-height: var(--leading-long);
+    color: var(--text-body);
+  }
+  .byline {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1);
+    margin: 0;
+    font-family: var(--font-label);
+    font-size: var(--text-label-lg);
+    font-weight: 600;
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .cover {
+    margin: var(--space-4) 0 0;
+  }
+  .cover :global(img) {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--line);
+  }
+  .layout {
+    display: grid;
+    gap: var(--space-6);
+    margin-top: var(--space-6);
+  }
+  .prose {
+    min-width: 0;
+    max-width: var(--measure);
+    font-size: var(--text-long);
+    line-height: var(--leading-long);
+    color: var(--text-body);
+  }
+  .side {
+    display: grid;
+    align-content: start;
+    gap: var(--space-2);
+  }
+  .toc {
+    padding: var(--space-1) var(--space-2) var(--space-2);
+    border-top: 1px solid var(--line-soft);
+  }
+  .toc-title {
+    margin: 0 0 var(--space-1);
+    font-family: var(--font-label);
+    font-size: var(--text-label);
+    font-weight: 600;
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .toc ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .toc a {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--touch-target);
+  }
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .pager {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+    gap: var(--space-2);
+    margin-top: var(--space-8);
+  }
+  @media (min-width: 64rem) {
+    .layout {
+      grid-template-columns: minmax(0, var(--measure)) 20rem;
+      justify-content: space-between;
+    }
+    .side {
+      position: sticky;
+      top: var(--space-3);
+      align-self: start;
+    }
+  }
+</style>

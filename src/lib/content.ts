@@ -92,3 +92,25 @@ export async function getProjects() {
   const projects = await getCollection('projects');
   return projects.sort((a, b) => a.data.order - b.data.order);
 }
+
+export function slugifyTag(tag: string): string {
+  return tag
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
+}
+
+/** Every tag used by a published post, with its slug and post count, alphabetically. */
+export async function getTags() {
+  const counts = new Map<string, { tag: string; slug: string; count: number }>();
+  for (const post of await getPosts()) {
+    for (const tag of post.data.tags) {
+      const slug = slugifyTag(tag);
+      const entry = counts.get(slug) ?? { tag, slug, count: 0 };
+      entry.count++;
+      counts.set(slug, entry);
+    }
+  }
+  return [...counts.values()].sort((a, b) => a.tag.localeCompare(b.tag));
+}

@@ -221,3 +221,39 @@ kbd {
 .prose li {
   margin-bottom: var(--space-1);
 }
+
+/* Drop cap on the first paragraph of a long-form body */
+.prose.dropcap > p:first-of-type::first-letter {
+  float: left;
+  margin: 0.05em var(--space-1) 0 0;
+  font-family: var(--font-display);
+  font-size: 4.5em;
+  line-height: 0.8;
+  color: var(--gold);
+}
+.prose blockquote {
+  margin: var(--space-4) 0;
+  padding: var(--space-3) 0;
+  border-top: 6px solid var(--home);
+  border-bottom: 6px solid var(--away);
+  font-family: var(--font-display);
+  font-size: var(--text-card);
+  line-height: 1.15;
+  color: var(--text);
+}
+.prose blockquote p {
+  margin: 0;
+}
+.prose img {
+  display: block;
+  height: auto;
+  border: 1px solid var(--line);
+}
+.prose figure {
+  margin: var(--space-4) 0;
+}
+.prose figcaption {
+  margin-top: var(--space-1);
+  font-size: var(--text-label-lg);
+  color: var(--text-muted);
+}
