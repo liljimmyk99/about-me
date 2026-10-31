@@ -86,3 +86,9 @@ export async function getTrophies() {
   const trophies = await getCollection('trophies');
   return trophies.sort((a, b) => b.data.year - a.data.year);
 }
+
+/** Projects in their `order`. */
+export async function getProjects() {
+  const projects = await getCollection('projects');
+  return projects.sort((a, b) => a.data.order - b.data.order);
+}
