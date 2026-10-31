@@ -85,6 +85,29 @@ const scoreboard = defineCollection({
   }),
 });
 
+// Bio chapters: one MDX file each, ordered by `order`; optional pull quote and captioned photo
+const bio = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/bio' }),
+  schema: ({ image: img }) =>
+    z.object({
+      title: z.string(),
+      order: z.number(),
+      pullQuote: z.string().optional(),
+      photo: z.object({ src: img(), alt: z.string().min(1), caption: z.string() }).optional(),
+    }),
+});
+
+// Scouting summary, vitals, intangibles and the closing call to action for /about
+const profile = defineCollection({
+  loader: file('src/data/profile.json'),
+  schema: z.object({
+    scoutingSummary: z.string(),
+    vitals: z.array(z.object({ label: z.string(), value: z.string() })),
+    intangibles: z.array(z.object({ title: z.string(), text: z.string() })),
+    nowSigning: z.object({ heading: z.string(), text: z.string() }),
+  }),
+});
+
 const link = z.object({ label: z.string(), href: z.url() });
 
 const site = defineCollection({
@@ -105,4 +128,4 @@ const site = defineCollection({
   }),
 });
 
-export const collections = { posts, projects, roles, trophies, now, scoreboard, site };
+export const collections = { posts, projects, roles, trophies, now, scoreboard, site, bio, profile };

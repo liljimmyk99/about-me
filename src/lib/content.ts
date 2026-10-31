@@ -69,3 +69,20 @@ export async function getFeaturedProjects(limit = 4) {
   const projects = await getCollection('projects', ({ data }) => data.featured);
   return projects.sort((a, b) => a.data.order - b.data.order).slice(0, limit);
 }
+
+export async function getBioChapters() {
+  const chapters = await getCollection('bio');
+  return chapters.sort((a, b) => a.data.order - b.data.order);
+}
+
+export async function getProfile() {
+  const entry = await getEntry('profile', 'profile');
+  if (!entry) throw new Error('Missing profile entry in src/data/profile.json');
+  return entry.data;
+}
+
+/** Trophies newest first. */
+export async function getTrophies() {
+  const trophies = await getCollection('trophies');
+  return trophies.sort((a, b) => b.data.year - a.data.year);
+}
