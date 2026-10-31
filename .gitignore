@@ -1,17 +1,13 @@
-Thumbs.db
+# build output
+dist/
+.astro/
+
+# dependencies
+node_modules/
+
+# logs
+npm-debug.log*
+
+# macOS
 .DS_Store
-.dist
-.tmp
-.lock
-.sass-cache
-npm-debug.log
-node_modules
-builds
-package-lock.json
-public
-resources
-.hugo_build.lock
-jsconfig.json
-hugo_stats.json
-go.sum
-yarn.lock
+Thumbs.db
