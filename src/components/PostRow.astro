@@ -1,0 +1,58 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Tag from './Tag.astro';
+import { formatDate } from '../lib/format';
+import { withBase } from '../lib/url';
+
+interface Props {
+  post: CollectionEntry<'posts'>;
+}
+
+const { post } = Astro.props;
+const { title, date, tags } = post.data;
+const [tag] = tags;
+---
+
+<a class="row" href={withBase(`/blog/${post.id}/`)}>
+  <time datetime={date.toISOString()}>{formatDate(date)}</time>
+  <span class="title">{title}</span>
+  {tag && <Tag>{tag}</Tag>}
+</a>
+
+<style>
+  .row {
+    display: grid;
+    grid-template-columns: 8rem 1fr auto;
+    align-items: center;
+    gap: var(--space-2);
+    min-height: var(--touch-target);
+    padding: var(--space-1) 0;
+    border-bottom: 1px solid var(--line-soft);
+    color: var(--text);
+    text-decoration: none;
+  }
+  .row:hover .title {
+    color: var(--gold);
+  }
+  time {
+    font-family: var(--font-label);
+    font-size: var(--text-label-lg);
+    font-weight: 600;
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .title {
+    font-size: var(--text-long);
+    font-weight: 600;
+    overflow-wrap: anywhere;
+  }
+  @media (max-width: 40rem) {
+    .row {
+      grid-template-columns: 1fr auto;
+    }
+    time {
+      grid-column: 1 / -1;
+    }
+  }
+</style>
