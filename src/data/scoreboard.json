@@ -1,4 +1,6 @@
 [
-  { "id": "placeholder-tile-1", "value": 0, "label": "PLACEHOLDER stat" },
-  { "id": "placeholder-seasons", "startYear": 2020, "label": "PLACEHOLDER seasons at the Linc" }
+  { "id": "black-belt", "value": "3rd", "label": "Degree black belt" },
+  { "id": "etfcg-members", "value": "250+", "label": "ETFCG members led" },
+  { "id": "robotics-events", "value": "TODO", "label": "Robotics events volunteered" },
+  { "id": "linc-seasons", "startYear": 2022, "label": "Seasons at the Linc" }
 ]

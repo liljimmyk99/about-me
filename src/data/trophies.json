@@ -1,1 +1,6 @@
-[{ "id": "placeholder-trophy", "year": 2020, "title": "PLACEHOLDER Trophy", "org": "PLACEHOLDER Org" }]
+[
+  { "id": "magna-cum-laude-2022", "year": 2022, "title": "BS in Human-Centered Design & Development, Magna Cum Laude", "org": "Penn State" },
+  { "id": "outstanding-volunteer-2023", "year": 2023, "title": "Outstanding Volunteer Award", "org": "Bensalem FIRST Robotics District Event" },
+  { "id": "third-degree-black-belt-2023", "year": 2023, "title": "Third-degree black belt in American Kempo (Sensei)", "org": "Action Karate Drexel Hill" },
+  { "id": "etfcg-co-lead-2024", "year": 2024, "title": "ETFCG Program Co-Lead", "org": "Ford Motor Company" }
+]

@@ -1,1 +1,5 @@
-[{ "id": "placeholder-now", "status": "up-next", "text": "PLACEHOLDER ticker item", "href": "/" }]
+[
+  { "id": "ford-credit-style-guide", "status": "in-progress", "text": "Standardizing the Ford Credit iOS codebase", "href": "/about/" },
+  { "id": "etfcg", "status": "in-progress", "text": "Co-leading the ETFCG program", "href": "/about/" },
+  { "id": "black-belt", "status": "final", "text": "Third-degree black belt earned", "href": "/about/" }
+]

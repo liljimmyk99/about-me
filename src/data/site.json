@@ -2,16 +2,34 @@
   "site": {
     "name": "Jimmy Kane",
     "legalName": "James B Kane IV",
-    "location": "Philadelphia, PA",
+    "location": "Bensalem, PA",
     "resume": "/resume.pdf",
     "socials": {
-      "github": { "label": "GitHub", "href": "https://www.github.com/liljimmyk99" },
-      "linkedin": { "label": "LinkedIn", "href": "https://www.linkedin.com/in/jamesbkaneiv/" },
-      "instagram": { "label": "Instagram", "href": "https://www.instagram.com/liljimmyk/" }
+      "github": {
+        "label": "GitHub",
+        "href": "https://www.github.com/liljimmyk99"
+      },
+      "linkedin": {
+        "label": "LinkedIn",
+        "href": "https://www.linkedin.com/in/jamesbkaneiv/"
+      },
+      "instagram": {
+        "label": "Instagram",
+        "href": "https://www.instagram.com/liljimmyk/"
+      }
     },
     "fan": {
       "teams": [
-        { "name": "PLACEHOLDER: Philadelphia Eagles", "city": "Philadelphia", "bestMoment": "PLACEHOLDER moment" }
+        {
+          "name": "Philadelphia Eagles",
+          "city": "Philadelphia",
+          "bestMoment": "TODO: best moment"
+        },
+        {
+          "name": "Penn State Nittany Lions",
+          "city": "State College",
+          "bestMoment": "TODO: best moment"
+        }
       ]
     }
   }
