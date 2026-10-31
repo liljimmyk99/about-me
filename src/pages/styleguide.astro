@@ -11,9 +11,10 @@ import ProjectCard from '../components/ProjectCard.astro';
 import PostRow from '../components/PostRow.astro';
 import PostCard from '../components/PostCard.astro';
 import { getCollection } from 'astro:content';
+import { getPosts } from '../lib/content';
 
 const [project] = await getCollection('projects');
-const [post] = await getCollection('posts');
+const [post] = await getPosts();
 
 const swift = `struct ContentView: View {
     var body: some View {
