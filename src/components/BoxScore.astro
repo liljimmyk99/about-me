@@ -4,13 +4,14 @@ interface Props {
   items: { label: string; value: string; href?: string }[];
   /** Header bar color: home (green) or away (navy). */
   side?: 'home' | 'away';
+  level?: 'h2' | 'h3';
 }
 
-const { title, items, side = 'home' } = Astro.props;
+const { title, items, side = 'home', level: Heading = 'h2' } = Astro.props;
 ---
 
 <aside class="box-score" aria-label={title}>
-  <h2 class:list={['bar', side]}>{title}</h2>
+  <Heading class:list={['bar', side]}>{title}</Heading>
   <dl>
     {
       items.map((item) => (

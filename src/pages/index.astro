@@ -1,23 +1,216 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Ticker from '../components/Ticker.astro';
 import Scoreboard from '../components/Scoreboard.astro';
 import SectionHeader from '../components/SectionHeader.astro';
 import StatTable from '../components/StatTable.astro';
-import { getRoles } from '../lib/content';
+import ProjectCard from '../components/ProjectCard.astro';
+import PostRow from '../components/PostRow.astro';
+import Button from '../components/Button.astro';
+import BoxScore from '../components/BoxScore.astro';
+import { photos } from '../data/photos';
+import { getFeaturedProjects, getPosts, getRoles, getSite } from '../lib/content';
+import { withBase } from '../lib/url';
 
-const roles = await getRoles();
+const [site, roles, featured, posts] = await Promise.all([
+  getSite(),
+  getRoles(),
+  getFeaturedProjects(),
+  getPosts(),
+]);
+
+// "Other uniforms" are the community roles
+const otherUniforms = roles.filter(({ data }) => data.league === 'community');
 ---
 
-<BaseLayout title="Jimmy Kane">
+<BaseLayout title={site.name}>
   <Ticker />
-  <div class="container" style="padding-block: var(--space-6)">
-    <h1>Jimmy Kane</h1>
-    <p>Site under construction.</p>
+
+  <section class="container hero">
+    <p class="eyebrow">{site.hero.eyebrow}</p>
+    <h1>{site.name}</h1>
+    <p class="intro">{site.hero.intro}</p>
+    <p class="actions">
+      <Button href="#career">Stat sheet</Button>
+      <Button href={site.socials.linkedin.href} variant="outline">LinkedIn</Button>
+    </p>
+  </section>
+
+  <div class="container section">
     <Scoreboard />
-    <section id="career" style="margin-top: var(--space-10)">
-      <SectionHeader eyebrow="Career stats" title="Season by season" />
-      <StatTable roles={roles} />
-    </section>
   </div>
+
+  <section class="container section" id="career" aria-labelledby="career-title">
+    <SectionHeader eyebrow="Career stats" title="Season by season" id="career-title" />
+    <StatTable roles={roles} />
+  </section>
+
+  {
+    featured.length > 0 && (
+      <section class="container section" id="highlights" aria-labelledby="highlights-title">
+        <SectionHeader eyebrow="Highlight reel" title="Featured projects" id="highlights-title" />
+        <div class="grid">
+          {featured.map((project) => <ProjectCard project={project} />)}
+        </div>
+        <p class="more"><a href={withBase('/projects/')}>All projects</a></p>
+      </section>
+    )
+  }
+
+  <section class="container section" aria-labelledby="off-title">
+    <SectionHeader eyebrow="Off the field" title="Other uniforms" id="off-title" />
+    <div class="off">
+      <ul class="uniforms">
+        {
+          otherUniforms.map(({ data: role }) => (
+            <li>
+              <span class="role">{role.title}</span>
+              <span class="org">{role.org}</span>
+            </li>
+          ))
+        }
+      </ul>
+      <figure>
+        <Image
+          src={photos.eaglesPortrait.src}
+          alt={photos.eaglesPortrait.alt}
+          widths={[600, 1200]}
+          sizes="(min-width: 48rem) 590px, 100vw"
+          loading="lazy"
+        />
+      </figure>
+    </div>
+    <div class="fans" aria-label="Fan section">
+      {
+        site.fan.teams.map((team, i) => (
+          <BoxScore
+            title={team.name}
+            side={i % 2 === 0 ? 'home' : 'away'}
+            level="h3"
+            items={[
+              { label: 'City', value: team.city },
+              { label: 'Best moment', value: team.bestMoment },
+            ]}
+          />
+        ))
+      }
+    </div>
+  </section>
+
+  {
+    posts.length > 0 && (
+      <section class="container section" id="press-box" aria-labelledby="press-title">
+        <SectionHeader eyebrow="Press box" title="Latest posts" id="press-title" />
+        <div>
+          {posts.slice(0, 3).map((post) => <PostRow post={post} />)}
+        </div>
+        <p class="more"><a href={withBase('/blog/')}>All posts</a></p>
+      </section>
+    )
+  }
+
+  <section class="container section bio" id="bio" aria-labelledby="bio-title">
+    <SectionHeader eyebrow="Player bio" title="Meet Jimmy" id="bio-title" />
+    <p class="teaser">{site.bioTeaser}</p>
+    <Button href={withBase('/about/')} variant="outline">Full bio</Button>
+  </section>
 </BaseLayout>
+
+<style>
+  .section {
+    margin-top: var(--space-10);
+  }
+  .hero {
+    padding-top: var(--space-8);
+  }
+  .eyebrow {
+    margin: 0 0 var(--space-1);
+    font-family: var(--font-label);
+    font-size: var(--text-label-lg);
+    font-weight: 700;
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  h1 {
+    font-size: var(--text-hero);
+    overflow-wrap: anywhere;
+  }
+  .intro {
+    max-width: var(--measure);
+    margin: var(--space-3) 0;
+    font-size: var(--text-long);
+    line-height: var(--leading-long);
+    color: var(--text-body);
+  }
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin: 0;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr));
+    gap: var(--space-3);
+  }
+  .more {
+    margin: var(--space-3) 0 0;
+    font-family: var(--font-label);
+    font-size: var(--text-label-lg);
+    font-weight: 700;
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+  }
+  .off {
+    display: grid;
+    gap: var(--space-4);
+    grid-template-columns: 1fr;
+  }
+  .uniforms {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .uniforms li {
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-1) 0;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .role {
+    font-weight: 600;
+  }
+  .org {
+    color: var(--text-muted);
+  }
+  figure {
+    margin: 0;
+  }
+  figure :global(img) {
+    display: block;
+    width: 100%;
+    max-height: 32rem;
+    object-fit: cover;
+    border: 1px solid var(--line);
+  }
+  .fans {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+    gap: var(--space-3);
+    margin-top: var(--space-4);
+  }
+  .teaser {
+    max-width: var(--measure);
+    font-size: var(--text-long);
+    line-height: var(--leading-long);
+    color: var(--text-body);
+  }
+  @media (min-width: 48rem) {
+    .off {
+      grid-template-columns: 1fr 1fr;
+      align-items: start;
+    }
+  }
+</style>

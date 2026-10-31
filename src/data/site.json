@@ -31,6 +31,11 @@
           "bestMoment": "TODO: best moment"
         }
       ]
-    }
+    },
+    "hero": {
+      "eyebrow": "iOS Developer \u00b7 Technical Project Manager",
+      "intro": "I build the Ford Credit mobile app, co-lead a 250-member graduate program, and spend my off hours teaching karate, mentoring a robotics team and working the Eagles gameday crew."
+    },
+    "bioTeaser": "PLACEHOLDER: Born and raised in Bensalem, PA, I'm trying to give back to the community that helped me grow up. By day I'm an iOS developer at Ford Credit; the rest of my time goes to youth, church and the community."
   }
 }
