@@ -1,10 +1,14 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Ticker from '../components/Ticker.astro';
+import Scoreboard from '../components/Scoreboard.astro';
 ---
 
 <BaseLayout title="Jimmy Kane">
+  <Ticker />
   <div class="container" style="padding-block: var(--space-6)">
     <h1>Jimmy Kane</h1>
     <p>Site under construction.</p>
+    <Scoreboard />
   </div>
 </BaseLayout>
