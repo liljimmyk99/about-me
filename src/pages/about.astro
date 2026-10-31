@@ -77,7 +77,7 @@ const rendered = await Promise.all(
       }
     </div>
 
-    <aside class="sidebar" aria-label="Intangibles and trophy case">
+    <div class="sidebar">
       <BoxScore title="Intangibles" items={[]}>
         <ul class="intangibles">
           {
@@ -95,7 +95,7 @@ const rendered = await Promise.all(
         side="away"
         items={trophies.map(({ data }) => ({ label: String(data.year), value: data.org ? `${data.title} (${data.org})` : data.title }))}
       />
-    </aside>
+    </div>
   </div>
 
   <section class="container signing" aria-labelledby="signing-title">
