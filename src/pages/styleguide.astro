@@ -7,6 +7,13 @@ import Tag from '../components/Tag.astro';
 import BoxScore from '../components/BoxScore.astro';
 import PullQuote from '../components/PullQuote.astro';
 import CodeBlock from '../components/CodeBlock.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import PostRow from '../components/PostRow.astro';
+import PostCard from '../components/PostCard.astro';
+import { getCollection } from 'astro:content';
+
+const [project] = await getCollection('projects');
+const [post] = await getCollection('posts');
 
 const swift = `struct ContentView: View {
     var body: some View {
@@ -65,6 +72,16 @@ const swift = `struct ContentView: View {
     </section>
 
     <section>
+      <SectionHeader eyebrow="Cards and rows" title="Project and post" />
+      <div class="narrow"><ProjectCard project={project} /></div>
+      <PostRow post={post} />
+      <div class="pair">
+        <PostCard direction="prev" title="Previous post title" href="/blog/" />
+        <PostCard direction="next" title="Next post title" href="/blog/" />
+      </div>
+    </section>
+
+    <section>
       <SectionHeader eyebrow="Code" title="Code blocks" />
       <CodeBlock code={swift} lang="swift" title="ContentView.swift" />
       <p>Inline <code>code</code> looks like this.</p>
@@ -84,6 +101,12 @@ const swift = `struct ContentView: View {
     flex-wrap: wrap;
     gap: var(--space-2);
     align-items: center;
+  }
+  .pair {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    gap: var(--space-2);
+    margin-top: var(--space-3);
   }
   .narrow {
     max-width: 24rem;
