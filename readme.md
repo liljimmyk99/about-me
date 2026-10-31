@@ -20,13 +20,14 @@ Run from the repo root:
 | `npm run build`   | Build the production site to `./dist/`                           |
 | `npm run preview` | Serve the built site locally (run `npm run build` first)         |
 | `npm run check`   | Type-check the project and content schemas with `astro check`    |
+| `npm run check:links` | Check every internal link, asset and `#fragment` in `dist/` (run `npm run build` first) |
 
 The site is served under the `/about-me` base path, so build internal links from `import.meta.env.BASE_URL` instead of hard-coding `/`.
 
 ## Deployment
 
 - Pushes to `main` build and deploy via `.github/workflows/main.yml` (`withastro/action`).
-- Pull requests into `redesign` run a type check and build via `.github/workflows/build-check.yml`.
+- Pull requests into `redesign` run `.github/workflows/build-check.yml`: type check, build, internal link check and Lighthouse CI (mobile, 95+ in Performance, Accessibility, Best Practices and SEO on the home page and one post; config in `lighthouserc.json`).
 
 ## License
 
