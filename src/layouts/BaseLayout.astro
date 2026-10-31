@@ -10,10 +10,24 @@ interface Props {
   title: string;
   description?: string;
   noindex?: boolean;
+  /** Social share image: an absolute or base-relative URL plus alt text. Defaults to the site card. */
+  image?: { src: string; alt: string };
+  type?: 'website' | 'article';
+  /** schema.org structured data rendered as JSON-LD. */
+  jsonLd?: Record<string, unknown>;
 }
 
-const { title, description = 'Personal site of Jimmy Kane.', noindex = false } = Astro.props;
+const {
+  title,
+  description = 'Personal site of Jimmy Kane.',
+  noindex = false,
+  image = { src: withBase('/og-default.png'), alt: `${site.name}: ${site.jobTitle}` },
+  type = 'website',
+  jsonLd,
+} = Astro.props;
 const fullTitle = title === site.name ? title : `${title} | ${site.name}`;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const imageUrl = new URL(image.src, Astro.site).href;
 ---
 
 <!doctype html>
@@ -25,6 +39,20 @@ const fullTitle = title === site.name ? title : `${title} | ${site.name}`;
     <meta name="color-scheme" content="dark" />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
     <link rel="alternate" type="application/rss+xml" title={`${site.name}: Blog`} href={withBase('/rss.xml')} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:type" content={type} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={imageUrl} />
+    <meta property="og:image:alt" content={image.alt} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageUrl} />
+    <meta name="twitter:image:alt" content={image.alt} />
+    {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd).replace(/</g, '\\u003c')} />}
     <title>{fullTitle}</title>
   </head>
   <body>

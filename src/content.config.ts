@@ -115,6 +115,7 @@ const site = defineCollection({
   schema: z.object({
     name: z.string(),
     legalName: z.string(),
+    jobTitle: z.string(),
     location: z.string(),
     resume: z.string(),
     hero: z.object({ eyebrow: z.string(), intro: z.string() }),
