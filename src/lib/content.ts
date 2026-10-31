@@ -63,3 +63,9 @@ export async function getRoles() {
       (b.data.end?.valueOf() ?? Infinity) - (a.data.end?.valueOf() ?? Infinity),
   );
 }
+
+/** Featured projects in their `order`, capped for the home page highlight reel. */
+export async function getFeaturedProjects(limit = 4) {
+  const projects = await getCollection('projects', ({ data }) => data.featured);
+  return projects.sort((a, b) => a.data.order - b.data.order).slice(0, limit);
+}

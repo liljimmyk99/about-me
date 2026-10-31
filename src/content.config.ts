@@ -94,6 +94,8 @@ const site = defineCollection({
     legalName: z.string(),
     location: z.string(),
     resume: z.string(),
+    hero: z.object({ eyebrow: z.string(), intro: z.string() }),
+    bioTeaser: z.string(),
     socials: z.object({ github: link, linkedin: link, instagram: link }),
     fan: z.object({
       teams: z.array(
