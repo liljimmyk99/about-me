@@ -11,12 +11,12 @@ stack: [Swift, SwiftUI, Tuist, WebSocket]
 repo: https://github.com/liljimmyk99/Macpardy
 screenshots: []
 featured: true
-order: 1
+order: 2
 ---
 
 ## The pregame
 
-PLACEHOLDER draft from the project README. Hosting trivia night shouldn't take accounts, a server or an internet connection. The host runs the game from a control window, the room watches a full-screen display on a TV or projector, and teams buzz in from their phones.
+A trivia night shouldn't need accounts, a server or an internet connection. Macpardy runs the whole game from one Mac: the host drives a control window, the room watches a full-screen display on a TV or projector, and teams buzz in from their phones over the local network.
 
 ## The playbook
 
@@ -28,8 +28,8 @@ PLACEHOLDER draft from the project README. Hosting trivia night shouldn't take a
 
 ## My role
 
-PLACEHOLDER draft. Solo project: product design, the SwiftUI app, the phone buzzer web page and the project tooling.
+Solo project: product design, the SwiftUI app, the phone buzzer page and the Tuist project tooling.
 
 ## Film review
 
-PLACEHOLDER: what worked, what I'd change, and what's still on the roadmap. Replace in the writing task.
+The buzzer protocol taught the most. It is versioned, so an old page left open on a phone is rejected cleanly instead of misbehaving. Buzzes that arrive within 75 ms of each other count as a tie, so the lowest score wins, then chance decides. And a sandboxed Mac app needs both the network server and network client entitlements before phones can connect. The [write-up on the buzzers](../../blog/macpardy-buzzers/) has the details.

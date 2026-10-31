@@ -1,0 +1,30 @@
+---
+title: Why I track every dollar by hand
+dek: Bank syncing would be easier. I built a spend tracker without it on purpose.
+date: 2026-10-23
+category: Notes
+tags: [personal-finance, projects]
+stack: [Go, React, SwiftUI]
+relatedProject: penny-pincher
+draft: false
+---
+
+I like to track my own expenses so I know where every single dollar goes. For a long time that was a Google Sheet: fine, but slow for something I do several times a week. I know enough spreadsheet to be dangerous, and I also know how to code, so an application felt like the way to do more.
+
+## First attempt
+
+In 2023, when I was just getting started with SwiftUI, I sketched the idea on a FigJam board to define a minimum viable product. By late 2025 the Mac app covered all of it: income and expenses, viewable in a calendar, a running list or a list by month. It worked, and it was ready for a rewrite.
+
+## Second attempt
+
+The rewrite, Penny-Pincher, starts from a contract instead of a screen. One self-hosted Go API with a SQLite database is described by an OpenAPI spec, and a React web app and a native Mac app are both built against it. Change the spec first, then the backend, then the clients.
+
+A few rules came out of the manual-entry habit:
+
+- **No bank syncing.** Recording each transaction is the point.
+- **Money is integer cents.** Floats and money don't mix.
+- **Derived, not stored.** The tax rate is `(gross taxable − net) ÷ gross taxable`, computed when it's shown, so it can never disagree with the numbers it came from.
+
+## What I'd tell my past self
+
+Write down the requirements before the first screen, and keep the list of what the app will *not* do next to the list of what it will. Both made the second version smaller and better.

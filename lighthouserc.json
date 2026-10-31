@@ -5,7 +5,7 @@
       "startServerReadyPattern": "4321",
       "url": [
         "http://localhost:4321/about-me/",
-        "http://localhost:4321/about-me/blog/placeholder-post/"
+        "http://localhost:4321/about-me/blog/macpardy-buzzers/"
       ],
       "numberOfRuns": 3
     },

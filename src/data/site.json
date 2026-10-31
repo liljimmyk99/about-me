@@ -23,12 +23,11 @@
         {
           "name": "Philadelphia Eagles",
           "city": "Philadelphia",
-          "bestMoment": "TODO: best moment"
+          "bestMoment": "On the field at the Linc, working the gameday crew, after the Eagles won the NFC Championship in January 2025."
         },
         {
           "name": "Penn State Nittany Lions",
-          "city": "State College",
-          "bestMoment": "TODO: best moment"
+          "city": "State College"
         }
       ]
     },
@@ -36,7 +35,7 @@
       "eyebrow": "iOS Developer \u00b7 Technical Project Manager",
       "intro": "I build the Ford Credit mobile app, co-lead a 250-member graduate program, and spend my off hours teaching karate, mentoring a robotics team and working the Eagles gameday crew."
     },
-    "bioTeaser": "PLACEHOLDER: Born and raised in Bensalem, PA, I'm trying to give back to the community that helped me grow up. By day I'm an iOS developer at Ford Credit; the rest of my time goes to youth, church and the community.",
+    "bioTeaser": "Born and raised in Bensalem, Pennsylvania, I'm trying to give back to the community that helped me grow up. By day I'm an iOS developer at Ford Credit; the rest of my time goes to teaching karate, mentoring a robotics team, serving at my church and working Eagles game days.",
     "jobTitle": "iOS Developer and Technical Project Manager"
   }
 }

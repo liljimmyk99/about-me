@@ -1,0 +1,36 @@
+---
+title: How Macpardy's phone buzzers work
+dek: Teams buzz in from their phones over the local network, with no accounts and no internet. Here's the small protocol that makes it fair.
+date: 2026-10-30
+category: Engineering
+tags: [macpardy, swift, networking]
+stack: [Swift, WebSocket]
+relatedProject: macpardy
+draft: false
+---
+
+Macpardy is a Jeopardy-style trivia app for the Mac. The host runs the game on one computer, the room watches a display, and every team buzzes in from a phone. I wanted that to work with no accounts, no server to run and no internet, so the Mac app itself listens for the phones on the local network.
+
+## One connection, a handful of messages
+
+Each phone opens a WebSocket to the app. Every message is a JSON object with a `type` and an optional `payload`, and anything with an unknown type is ignored, which leaves room to grow.
+
+```json title="join.json"
+{ "type": "join", "version": 6, "code": "AB3XYZ" }
+```
+
+A phone joins with the six-character Game PIN shown on the host's screen, claims one of up to four teams, and from then on its only job is to send `buzz`. The version field matters: a phone page left open from an older build is rejected with a clear reason instead of misbehaving.
+
+## Deciding who buzzed first
+
+Network messages don't arrive in a perfect order, so "first" needs a rule. Buzzes that land within 75 ms of the first one count as a tie, and a tie goes to the team with the lowest score, then to chance. The app, not the phones, makes the call and answers with the new buzzer state.
+
+## Keeping it honest and tidy
+
+- **Rate limits.** More than five wrong Game PINs from one address in a minute locks that address out for 30 seconds, even if the next code is right.
+- **Heartbeats.** The app pings every phone every two seconds and expects a reply within five, so a phone that wandered off the Wi-Fi drops out cleanly.
+- **A clean ending.** When the host completes a game, every phone is told the session ended and returns to an empty Game PIN screen.
+
+## One gotcha
+
+A sandboxed Mac app that only has the network *server* entitlement will start listening and even serve itself, but connections from other devices are dropped before the app ever sees them. It also needs the network *client* entitlement. That one cost an evening.
