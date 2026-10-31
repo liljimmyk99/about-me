@@ -91,7 +91,7 @@ const otherUniforms = roles.filter(({ data }) => data.league === 'community');
         />
       </figure>
     </div>
-    <div class="fans" aria-label="Fan section">
+    <div class="fans" role="group" aria-label="Fan section">
       {
         site.fan.teams.map((team, i) => (
           <BoxScore

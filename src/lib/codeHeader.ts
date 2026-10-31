@@ -14,7 +14,10 @@ export const codeHeader: ShikiTransformer = {
     const title = filename?.[1] ?? filename?.[2];
     const lang = this.options.lang;
 
+    // Scrollable code is keyboard-focusable, so it needs a role and name for screen readers
     pre.properties.tabindex = 0;
+    pre.properties.role = 'region';
+    pre.properties['aria-label'] = `${title ?? lang} code`;
 
     const header = {
       type: 'element' as const,

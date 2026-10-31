@@ -76,7 +76,7 @@ const items = [
     <div class="layout">
       <div class="prose dropcap"><slot /></div>
 
-      <aside class="side" aria-label="About this post">
+      <div class="side">
         <BoxScore title="Box score" items={items}>
           {
             toc.length > 0 && (
@@ -92,7 +92,7 @@ const items = [
         <ul class="tags" aria-label="Tags">
           {tags.map((tag) => <li><Tag href={withBase(`/blog/tags/${slugifyTag(tag)}/`)}>{tag}</Tag></li>)}
         </ul>
-      </aside>
+      </div>
     </div>
 
     <nav class="pager" aria-label="More posts">

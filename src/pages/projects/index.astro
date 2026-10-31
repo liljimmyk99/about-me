@@ -31,7 +31,7 @@ const label = (value: string) => value.replace(/(^|-)(\w)/g, (_, dash, c) => `${
       {
         projects.map((project) => (
           <li data-kind={project.data.kind} data-layer={project.data.layer}>
-            <ProjectCard project={project} />
+            <ProjectCard project={project} level="h2" />
           </li>
         ))
       }

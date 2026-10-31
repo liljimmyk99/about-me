@@ -6,9 +6,11 @@ import { withBase } from '../lib/url';
 
 interface Props {
   project: CollectionEntry<'projects'>;
+  /** Heading level for the project name; pick the level that follows the surrounding heading. */
+  level?: 'h2' | 'h3';
 }
 
-const { project } = Astro.props;
+const { project, level: Heading = 'h3' } = Astro.props;
 const { name, oneLiner, kind, stack, screenshots } = project.data;
 const [screenshot] = screenshots;
 const kindLabel = kind === 'work' ? 'Work' : 'Personal';
@@ -27,7 +29,7 @@ const kindLabel = kind === 'work' ? 'Work' : 'Personal';
       <li><Tag>{kindLabel}</Tag></li>
       {stack.slice(0, 3).map((item) => <li><Tag>{item}</Tag></li>)}
     </ul>
-    <h3><a href={withBase(`/projects/${project.id}/`)}>{name}</a></h3>
+    <Heading><a href={withBase(`/projects/${project.id}/`)}>{name}</a></Heading>
     <p>{oneLiner}</p>
   </div>
 </article>
@@ -68,23 +70,24 @@ const kindLabel = kind === 'work' ? 'Work' : 'Personal';
     padding: 0;
     list-style: none;
   }
-  h3 {
+  .body :global(h2),
+  .body :global(h3) {
     margin-bottom: var(--space-1);
   }
-  h3 a {
+  .body :global(a) {
     color: var(--text);
     text-decoration: none;
   }
   /* Stretch the title link over the whole card */
-  h3 a::after {
+  .body :global(a)::after {
     content: '';
     position: absolute;
     inset: 0;
   }
-  h3 a:focus-visible {
+  .body :global(a:focus-visible) {
     outline: none;
   }
-  .card:has(h3 a:focus-visible) {
+  .card:has(a:focus-visible) {
     outline: var(--focus-ring) solid var(--gold);
     outline-offset: 3px;
   }
