@@ -2,6 +2,11 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Ticker from '../components/Ticker.astro';
 import Scoreboard from '../components/Scoreboard.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import StatTable from '../components/StatTable.astro';
+import { getRoles } from '../lib/content';
+
+const roles = await getRoles();
 ---
 
 <BaseLayout title="Jimmy Kane">
@@ -10,5 +15,9 @@ import Scoreboard from '../components/Scoreboard.astro';
     <h1>Jimmy Kane</h1>
     <p>Site under construction.</p>
     <Scoreboard />
+    <section id="career" style="margin-top: var(--space-10)">
+      <SectionHeader eyebrow="Career stats" title="Season by season" />
+      <StatTable roles={roles} />
+    </section>
   </div>
 </BaseLayout>
