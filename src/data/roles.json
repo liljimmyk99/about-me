@@ -1,10 +1,157 @@
 [
   {
-    "id": "placeholder-role",
-    "start": "2020-01-01",
-    "org": "PLACEHOLDER Org",
-    "title": "PLACEHOLDER Title",
+    "id": "ios-software-engineer",
+    "start": "2025-01-01",
+    "org": "Ford Motor Credit Company",
+    "title": "iOS Software Engineer",
     "league": "career",
-    "bullets": ["PLACEHOLDER bullet one", "PLACEHOLDER bullet two"]
+    "bullets": [
+      "Develop, maintain and refactor the Ford Credit Mobile Application.",
+      "Wrote a Development Style Guide and GitHub Copilot instructions that review PRs against it.",
+      "Use AI to refactor existing code to conform to the Style Guide."
+    ]
+  },
+  {
+    "id": "mobile-platform-engineer",
+    "start": "2024-01-01",
+    "end": "2025-01-01",
+    "org": "Ford Motor Credit Company",
+    "title": "Mobile Platform Engineer",
+    "league": "career",
+    "bullets": [
+      "Built and maintained a SwiftUI mobile design system from scratch.",
+      "Maintained mobile deployment pipelines and workflows.",
+      "Worked with design and product teams to drive component adoption."
+    ]
+  },
+  {
+    "id": "technical-project-manager",
+    "start": "2024-01-01",
+    "end": "2025-01-01",
+    "org": "Ford Motor Credit Company",
+    "title": "Technical Project Manager",
+    "league": "career",
+    "bullets": [
+      "Set team standards in Jira, GitHub and documentation.",
+      "Facilitated every Scrum ceremony for the mobile platform team.",
+      "Led the transition from Rally to Jira and from WebEx to MS Teams."
+    ]
+  },
+  {
+    "id": "sync4-software-developer",
+    "start": "2022-09-01",
+    "end": "2024-01-01",
+    "org": "Ford Motor Company",
+    "title": "SYNC4 Software Developer",
+    "league": "career",
+    "bullets": [
+      "Built React apps on custom hardware for the Mustang Mach-E and F-150 Lightning.",
+      "Worked on charging and backup power apps and games.",
+      "Wrote and interpreted high-level designs (HLDs) for features."
+    ]
+  },
+  {
+    "id": "emerging-tech-intern",
+    "start": "2021-05-01",
+    "end": "2021-07-01",
+    "org": "Ford Motor Company",
+    "title": "Emerging Technologies and Innovation Intern",
+    "league": "career",
+    "bullets": [
+      "Helped put Design Thinking practices to work across multiple teams.",
+      "Served on two intern innovation challenge teams; finished 'Most Viable' and as a finalist."
+    ]
+  },
+  {
+    "id": "margaret-hamilton-intern",
+    "start": "2021-05-01",
+    "end": "2021-07-01",
+    "org": "Penn State Enterprise IT, Software Engineering",
+    "title": "Margaret Hamilton Distinguished Intern",
+    "league": "career",
+    "bullets": ["Software engineering internship with Penn State Enterprise IT."]
+  },
+  {
+    "id": "etfcg-co-lead",
+    "start": "2024-01-01",
+    "org": "Ford Enterprise Technology College Graduate program (ETFCG)",
+    "title": "Program Co-Lead",
+    "league": "community",
+    "bullets": [
+      "Co-lead a program of more than 250 members.",
+      "Elected by peers to the role."
+    ]
+  },
+  {
+    "id": "etfcg-finance-lead",
+    "start": "2023-01-01",
+    "end": "2024-01-01",
+    "org": "Ford Enterprise Technology College Graduate program (ETFCG)",
+    "title": "Finance Lead",
+    "league": "community",
+    "bullets": ["Led finances for the ETFCG program."]
+  },
+  {
+    "id": "team-5401-mentor",
+    "start": "2023-01-01",
+    "org": "Fightin' Robotic Owls, FIRST Robotics Team 5401",
+    "title": "Programming Mentor",
+    "league": "community",
+    "bullets": [
+      "Mentor the team I helped found as a Bensalem High School student, where I was program manager.",
+      "Offer both professional and personal advice to students."
+    ],
+    "link": "https://team5401.org"
+  },
+  {
+    "id": "bensalem-frc-volunteer-coordinator",
+    "start": "2023-01-01",
+    "org": "Bensalem FIRST Robotics District Event",
+    "title": "Volunteer Coordinator",
+    "league": "community",
+    "bullets": [
+      "Recruit volunteers and fill gaps for the district event hosted by Team 5401.",
+      "Create a positive atmosphere for guest teams and volunteers.",
+      "Also referee an event at Centennial High School."
+    ]
+  },
+  {
+    "id": "eagles-concierge",
+    "start": "2022-01-01",
+    "org": "Philadelphia Eagles, Lincoln Financial Field",
+    "title": "Concierge Staff",
+    "league": "community",
+    "bullets": ["Gameday concierge staff at Lincoln Financial Field."]
+  },
+  {
+    "id": "action-karate-drexel-hill",
+    "start": "2022-01-01",
+    "org": "Action Karate Drexel Hill",
+    "title": "Senior Instructor",
+    "league": "community",
+    "bullets": [
+      "Teach American Kempo karate to students from age three to adults.",
+      "Earned the rank of Sensei with a third-degree black belt in 2023."
+    ]
+  },
+  {
+    "id": "action-karate-hamilton",
+    "start": "2024-01-01",
+    "org": "Action Karate Hamilton",
+    "title": "Senior Instructor",
+    "league": "community",
+    "bullets": ["Teach American Kempo karate at a second Action Karate location."]
+  },
+  {
+    "id": "calvary-chapel-koinonia-cafe",
+    "start": "2024-06-01",
+    "org": "Calvary Chapel of Philadelphia",
+    "title": "Koinonia Café Volunteer",
+    "league": "community",
+    "bullets": [
+      "Serve in the café on Wednesday nights and for two Sunday-morning services.",
+      "Lead a discipleship group of Senior High boys."
+    ],
+    "link": "http://ccphilly.org"
   }
 ]
