@@ -1,0 +1,10 @@
+[
+  {
+    "id": "placeholder-role",
+    "start": "2020-01-01",
+    "org": "PLACEHOLDER Org",
+    "title": "PLACEHOLDER Title",
+    "league": "career",
+    "bullets": ["PLACEHOLDER bullet one", "PLACEHOLDER bullet two"]
+  }
+]
