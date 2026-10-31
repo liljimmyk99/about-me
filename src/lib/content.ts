@@ -11,3 +11,45 @@ export async function getSite() {
   if (!entry) throw new Error('Missing site entry in src/data/site.json');
   return entry.data;
 }
+
+export type TickerStatus = 'final' | 'in-progress' | 'up-next';
+export interface TickerItem {
+  status: TickerStatus;
+  text: string;
+  href: string;
+}
+
+const tickerOrder: TickerStatus[] = ['final', 'in-progress', 'up-next'];
+const MAX_TICKER_ITEMS = 4;
+
+/** Newest post (as "Final") plus the items in now.json, ordered Final, In progress, Up next. */
+export async function getTickerItems(): Promise<TickerItem[]> {
+  const [newest] = await getPosts();
+  const now = (await getCollection('now')).map((entry) => entry.data);
+  const items: TickerItem[] = [
+    ...(newest
+      ? [{ status: 'final' as const, text: newest.data.title, href: `/blog/${newest.id}/` }]
+      : []),
+    ...now,
+  ];
+  return items
+    .sort((a, b) => tickerOrder.indexOf(a.status) - tickerOrder.indexOf(b.status))
+    .slice(0, MAX_TICKER_ITEMS);
+}
+
+export interface ScoreboardTile {
+  id: string;
+  value: string | number;
+  label: string;
+}
+
+/** Tiles with `startYear` get a computed season count (the start year counts as season one). */
+export async function getScoreboardTiles(): Promise<ScoreboardTile[]> {
+  const year = new Date().getFullYear();
+  const tiles = await getCollection('scoreboard');
+  return tiles.map(({ id, data }) => ({
+    id,
+    label: data.label,
+    value: data.startYear !== undefined ? year - data.startYear + 1 : (data.value ?? ''),
+  }));
+}
