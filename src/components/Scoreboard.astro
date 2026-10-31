@@ -1,0 +1,106 @@
+---
+import { getScoreboardTiles, getSite } from '../lib/content';
+
+const [site, tiles] = await Promise.all([getSite(), getScoreboardTiles()]);
+---
+
+<section class="scoreboard" aria-label="Scoreboard">
+  <div class="teams">
+    <p class="team home"><span class="side">Home</span> <span class="place">Philly</span></p>
+    <p class="team away"><span class="side">Away</span> <span class="place">State College</span></p>
+  </div>
+  <dl class="tiles">
+    {
+      tiles.map((tile) => (
+        <div class="tile">
+          <dt>{tile.label}</dt>
+          <dd>{tile.value}</dd>
+        </div>
+      ))
+    }
+  </dl>
+  <p class="location">{site.location}</p>
+</section>
+
+<style>
+  .scoreboard {
+    background: var(--surface-deep);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-scoreboard);
+    overflow: hidden;
+  }
+  .teams {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .team {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: var(--space-1) var(--space-2);
+    font-family: var(--font-label);
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    color: var(--text);
+  }
+  .home {
+    background: var(--home);
+  }
+  .away {
+    background: var(--away);
+    text-align: right;
+  }
+  .side {
+    font-size: var(--text-label);
+    font-weight: 600;
+    color: var(--text-body);
+  }
+  .place {
+    font-size: var(--text-label-lg);
+    font-weight: 700;
+  }
+  .tiles {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 0;
+  }
+  .tile {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+    padding: var(--space-3) var(--space-2);
+    border-top: 1px solid var(--line-soft);
+  }
+  .tile:nth-child(odd) {
+    border-right: 1px solid var(--line-soft);
+  }
+  dd {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: var(--text-section);
+    line-height: 1;
+    color: var(--gold);
+    overflow-wrap: anywhere;
+  }
+  dt {
+    margin-top: var(--space-1);
+    font-family: var(--font-label);
+    font-size: var(--text-label);
+    font-weight: 600;
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .location {
+    margin: 0;
+    padding: var(--space-1) var(--space-2);
+    border-top: 1px solid var(--line-soft);
+    font-family: var(--font-label);
+    font-size: var(--text-label);
+    font-weight: 600;
+    letter-spacing: var(--tracking-label);
+    text-align: center;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+</style>
