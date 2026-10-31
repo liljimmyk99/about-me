@@ -1,0 +1,34 @@
+---
+name: Penny-Pincher
+oneLiner: "A manual-entry spend tracker: income by source, expenses by category, and trends by month and year."
+kind: personal
+layer: full-stack
+platform: Web and macOS
+role: Designer and developer
+started: 2026-10-23
+status: In development
+stack: [Go, SQLite, React, SwiftUI, OpenAPI, Docker]
+screenshots: []
+featured: true
+order: 3
+---
+
+## The pregame
+
+I like to track my spending by hand so I know where every dollar goes. For years that meant a spreadsheet. I wanted something faster for entering transactions and income, and an application can do far more than a sheet can. There's no bank syncing here, on purpose: the point is the habit of recording.
+
+## The playbook
+
+- Record monthly income by source, with gross, gross taxable and net amounts, and every expense by category.
+- View totals and trends by month and year.
+- One self-hosted Go API with a SQLite database, described by an OpenAPI spec that both clients build against.
+- A React web app and a native SwiftUI Mac app on top of that one API.
+- All money is stored as integer cents, never floats, and the tax rate is derived from the amounts instead of stored.
+
+## My role
+
+Solo project: product requirements, the OpenAPI contract, the Go backend and both clients.
+
+## Film review
+
+This is the second pass at the idea. My first attempt, a SwiftUI Mac app, got through its whole minimum viable product but needed a rewrite. Starting over with a written contract (the OpenAPI spec first, then the backend, then the clients) is what makes building two clients on one API manageable.

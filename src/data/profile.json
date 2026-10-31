@@ -1,20 +1,50 @@
 [
   {
     "id": "profile",
-    "scoutingSummary": "PLACEHOLDER scouting report: an iOS developer and technical project manager from Bensalem, PA who leads, mentors and teaches. Strengths: communication, mentorship and shipping steady mobile work. Plays best when helping others get better.",
+    "scoutingSummary": "An iOS developer and technical project manager from Bensalem, PA who leads, teaches and mentors. Strengths: communication, steady mobile engineering and bringing people along. Plays best when helping others get better: karate students, robotics teams and the 250-member ETFCG program he co-leads.",
     "vitals": [
-      { "label": "Position", "value": "iOS Developer & TPM" },
-      { "label": "Team", "value": "Ford Credit Mobile Platform" },
-      { "label": "Hometown", "value": "Bensalem, PA" },
-      { "label": "School", "value": "Penn State" },
-      { "label": "Degree", "value": "BS Human-Centered Design & Development" },
-      { "label": "Belt", "value": "3rd-degree black" }
+      {
+        "label": "Position",
+        "value": "iOS Developer & TPM"
+      },
+      {
+        "label": "Team",
+        "value": "Ford Credit Mobile Platform"
+      },
+      {
+        "label": "Hometown",
+        "value": "Bensalem, PA"
+      },
+      {
+        "label": "School",
+        "value": "Penn State"
+      },
+      {
+        "label": "Degree",
+        "value": "BS Human-Centered Design & Development"
+      },
+      {
+        "label": "Belt",
+        "value": "3rd-degree black"
+      }
     ],
     "intangibles": [
-      { "title": "Communicator", "text": "Over five years in customer service, with customers both outside and inside the organizations I worked for." },
-      { "title": "Instructor", "text": "Six years teaching karate to students from age three to adult, three years as a college peer tutor, and now a Senior High Bible Study leader." },
-      { "title": "Mentor", "text": "A mentor to my high school robotics team and my karate students, offering both professional and personal advice." },
-      { "title": "Leadership", "text": "In leadership roles since high school: robotics program manager, volunteer coordinator, tutoring co-coordinator, senior instructor, TPM and co-lead of the 250-member ETFCG program. Many were elected or appointed by peers." }
+      {
+        "title": "Communicator",
+        "text": "Over five years in customer service, with customers both outside and inside the organizations I worked for."
+      },
+      {
+        "title": "Instructor",
+        "text": "Six years teaching karate to students from age three to adult, three years as a college peer tutor, and now a Senior High Bible Study leader."
+      },
+      {
+        "title": "Mentor",
+        "text": "A mentor to my high school robotics team and my karate students, offering both professional and personal advice."
+      },
+      {
+        "title": "Leadership",
+        "text": "In leadership roles since high school: robotics program manager, volunteer coordinator, tutoring co-coordinator, senior instructor, TPM and co-lead of the 250-member ETFCG program. Many were elected or appointed by peers."
+      }
     ],
     "nowSigning": {
       "heading": "Now signing",

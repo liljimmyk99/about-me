@@ -123,7 +123,7 @@ const site = defineCollection({
     socials: z.object({ github: link, linkedin: link, instagram: link }),
     fan: z.object({
       teams: z.array(
-        z.object({ name: z.string(), city: z.string(), bestMoment: z.string() }),
+        z.object({ name: z.string(), city: z.string(), bestMoment: z.string().optional() }),
       ),
     }),
   }),
