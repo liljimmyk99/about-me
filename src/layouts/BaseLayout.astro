@@ -4,6 +4,13 @@ import SiteNav from '../components/SiteNav.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import { getSite } from '../lib/content';
 import { withBase } from '../lib/url';
+// Preload the above-the-fold fonts so the swap happens before first paint (avoids layout shift)
+import bebasNeue400 from '@fontsource/bebas-neue/files/bebas-neue-latin-400-normal.woff2?url';
+import barlow400 from '@fontsource/barlow/files/barlow-latin-400-normal.woff2?url';
+import barlowCondensed600 from '@fontsource/barlow-condensed/files/barlow-condensed-latin-600-normal.woff2?url';
+import barlowCondensed700 from '@fontsource/barlow-condensed/files/barlow-condensed-latin-700-normal.woff2?url';
+
+const preloadFonts = [bebasNeue400, barlow400, barlowCondensed600, barlowCondensed700];
 const site = await getSite();
 
 interface Props {
@@ -39,6 +46,8 @@ const imageUrl = new URL(image.src, Astro.site).href;
     <meta name="color-scheme" content="dark" />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
     <link rel="alternate" type="application/rss+xml" title={`${site.name}: Blog`} href={withBase('/rss.xml')} />
+    <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
+    {preloadFonts.map((href) => <link rel="preload" as="font" type="font/woff2" href={href} crossorigin />)}
     <link rel="canonical" href={canonical} />
     <meta property="og:site_name" content={site.name} />
     <meta property="og:type" content={type} />
