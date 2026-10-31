@@ -12,7 +12,7 @@ const { title, items, side = 'home', level: Heading = 'h2' } = Astro.props;
 
 <aside class="box-score" aria-label={title}>
   <Heading class:list={['bar', side]}>{title}</Heading>
-  <dl>
+  {items.length > 0 && <dl>
     {
       items.map((item) => (
         <div class="row">
@@ -21,7 +21,7 @@ const { title, items, side = 'home', level: Heading = 'h2' } = Astro.props;
         </div>
       ))
     }
-  </dl>
+  </dl>}
   <slot />
 </aside>
 
