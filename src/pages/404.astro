@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/Button.astro';
+import { withBase } from '../lib/url';
+---
+
+<BaseLayout title="Flag on the play" description="That page doesn't exist." noindex>
+  <section class="container page">
+    <p class="eyebrow">404 · Page not found</p>
+    <h1>Flag on the play</h1>
+    <p class="call">
+      Illegal formation: that page isn't on the field. The play is dead, so head back to the huddle.
+    </p>
+    <p class="actions">
+      <Button href={withBase('/')}>Back home</Button>
+      <Button href={withBase('/blog/')} variant="outline">Read the blog</Button>
+    </p>
+  </section>
+</BaseLayout>
+
+<style>
+  .page {
+    padding-block: var(--space-10);
+  }
+  .eyebrow {
+    margin: 0 0 var(--space-1);
+    font-family: var(--font-label);
+    font-size: var(--text-label-lg);
+    font-weight: 700;
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  h1 {
+    font-size: var(--text-hero);
+    overflow-wrap: anywhere;
+  }
+  .call {
+    max-width: var(--measure);
+    margin: var(--space-3) 0;
+    font-size: var(--text-long);
+    line-height: var(--leading-long);
+    color: var(--text-body);
+  }
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin: 0;
+  }
+</style>

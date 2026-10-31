@@ -3,6 +3,7 @@ import '../styles/global.css';
 import SiteNav from '../components/SiteNav.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import { getSite } from '../lib/content';
+import { withBase } from '../lib/url';
 const site = await getSite();
 
 interface Props {
@@ -23,6 +24,7 @@ const fullTitle = title === site.name ? title : `${title} | ${site.name}`;
     <meta name="description" content={description} />
     <meta name="color-scheme" content="dark" />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
+    <link rel="alternate" type="application/rss+xml" title={`${site.name}: Blog`} href={withBase('/rss.xml')} />
     <title>{fullTitle}</title>
   </head>
   <body>
