@@ -139,3 +139,63 @@ kbd {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Shiki 'css-variables' theme, driven by the --code-* tokens */
+:root {
+  --astro-code-foreground: var(--code-text);
+  --astro-code-background: var(--code-bg);
+  --astro-code-token-constant: var(--code-constant);
+  --astro-code-token-string: var(--code-string);
+  --astro-code-token-comment: var(--code-comment);
+  --astro-code-token-keyword: var(--code-keyword);
+  --astro-code-token-parameter: var(--code-constant);
+  --astro-code-token-function: var(--code-function);
+  --astro-code-token-string-expression: var(--code-string);
+  --astro-code-token-punctuation: var(--code-punctuation);
+  --astro-code-token-link: var(--gold);
+}
+
+/* Inline code */
+:not(pre) > code {
+  padding: 0.1em 0.35em;
+  background: var(--surface);
+  border: 1px solid var(--line-soft);
+}
+
+/* Code blocks: <figure class="code-block"> with a filename + language header */
+.code-block {
+  margin: var(--space-3) 0;
+  background: var(--code-bg);
+  border: 1px solid var(--line);
+}
+.code-block figcaption {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-2);
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-label);
+  font-size: var(--text-label);
+  font-weight: 600;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.code-block figcaption .filename {
+  color: var(--text);
+  text-transform: none;
+  font-family: var(--font-mono);
+  letter-spacing: 0;
+}
+.code-block pre {
+  margin: 0;
+  padding: var(--space-2);
+  overflow-x: auto;
+  font-size: var(--text-code);
+  line-height: 1.6;
+  background: transparent !important;
+}
+.code-block pre:focus-visible {
+  outline-offset: -3px;
+}

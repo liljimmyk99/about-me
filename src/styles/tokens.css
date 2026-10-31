@@ -15,6 +15,16 @@
   --away: #041e42;
   --gold: #ffb81c;
 
+  /* Syntax highlighting (Shiki css-variables theme) */
+  --code-bg: var(--surface-deep);
+  --code-text: var(--text-body);
+  --code-comment: var(--text-muted);
+  --code-keyword: var(--gold);
+  --code-string: #8fd3a8;
+  --code-function: #7cc4e8;
+  --code-constant: #f2a07b;
+  --code-punctuation: var(--text-muted);
+
   /* Font families */
   --font-display: 'Bebas Neue', Impact, 'Arial Narrow', sans-serif;
   --font-label: 'Barlow Condensed', 'Arial Narrow', sans-serif;
