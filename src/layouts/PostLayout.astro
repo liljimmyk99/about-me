@@ -1,12 +1,12 @@
 ---
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 import type { CollectionEntry, RenderResult } from 'astro:content';
 import BaseLayout from './BaseLayout.astro';
 import BoxScore from '../components/BoxScore.astro';
 import PostCard from '../components/PostCard.astro';
 import Tag from '../components/Tag.astro';
 import { formatDate, readTimeMinutes } from '../lib/format';
-import { slugifyTag } from '../lib/content';
+import { getSite, slugifyTag } from '../lib/content';
 import { withBase } from '../lib/url';
 
 interface Props {
@@ -22,6 +22,24 @@ interface Props {
 const { post, headings, project, previous, next } = Astro.props;
 const { title, dek, date, updated, category, tags, cover, stack } = post.data;
 const minutes = readTimeMinutes(post.body);
+const site = await getSite();
+const shareImage = cover
+  ? { src: (await getImage({ src: cover.src, width: 1200, height: 630, fit: 'cover', format: 'jpg' })).src, alt: cover.alt }
+  : undefined;
+const postUrl = new URL(withBase(`/blog/${post.id}/`), Astro.site).href;
+const blogPosting = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: title,
+  description: dek,
+  datePublished: date.toISOString(),
+  dateModified: (updated ?? date).toISOString(),
+  keywords: tags,
+  url: postUrl,
+  mainEntityOfPage: postUrl,
+  ...(shareImage && { image: new URL(shareImage.src, Astro.site).href }),
+  author: { '@type': 'Person', name: site.name, url: new URL(withBase('/'), Astro.site).href },
+};
 const toc = headings.filter((heading) => heading.depth === 2);
 
 const items = [
@@ -32,7 +50,7 @@ const items = [
 ];
 ---
 
-<BaseLayout title={title} description={dek}>
+<BaseLayout title={title} description={dek} type="article" image={shareImage} jsonLd={blogPosting}>
   <article class="container page">
     <p class="back"><a href={withBase('/blog/')}>&larr; All posts</a></p>
     <header>

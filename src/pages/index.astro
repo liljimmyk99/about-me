@@ -20,11 +20,21 @@ const [site, roles, featured, posts] = await Promise.all([
   getPosts(),
 ]);
 
+const personJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: site.name,
+  alternateName: site.legalName,
+  jobTitle: site.jobTitle,
+  url: new URL(withBase('/'), Astro.site).href,
+  sameAs: Object.values(site.socials).map((social) => social.href),
+};
+
 // "Other uniforms" are the community roles
 const otherUniforms = roles.filter(({ data }) => data.league === 'community');
 ---
 
-<BaseLayout title={site.name}>
+<BaseLayout title={site.name} description={site.hero.intro} jsonLd={personJsonLd}>
   <Ticker />
 
   <section class="container hero">
