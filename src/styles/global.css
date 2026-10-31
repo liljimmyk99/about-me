@@ -199,3 +199,25 @@ kbd {
 .code-block pre:focus-visible {
   outline-offset: -3px;
 }
+
+/* Long-form content (MDX bodies) */
+.prose h2 {
+  margin: var(--space-6) 0 var(--space-2);
+  font-size: var(--text-card);
+  color: var(--text);
+}
+.prose h2:first-child {
+  margin-top: 0;
+}
+.prose h3 {
+  margin: var(--space-4) 0 var(--space-1);
+  font-size: var(--text-card);
+}
+.prose ul,
+.prose ol {
+  margin: 0 0 var(--space-2);
+  padding-left: var(--space-3);
+}
+.prose li {
+  margin-bottom: var(--space-1);
+}

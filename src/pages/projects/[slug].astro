@@ -1,0 +1,190 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Button from '../../components/Button.astro';
+import Tag from '../../components/Tag.astro';
+import BoxScore from '../../components/BoxScore.astro';
+import PostCard from '../../components/PostCard.astro';
+import PostRow from '../../components/PostRow.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import { getPosts, getProjects } from '../../lib/content';
+
+export async function getStaticPaths() {
+  const projects = await getProjects();
+  const posts = await getPosts();
+  return projects.map((project, i) => ({
+    params: { slug: project.id },
+    props: {
+      project,
+      previous: projects[i - 1],
+      next: projects[i + 1],
+      related: posts.filter((post) => post.data.relatedProject?.id === project.id),
+    },
+  }));
+}
+
+const { project, previous, next, related } = Astro.props;
+const { name, oneLiner, kind, layer, platform, role, started, status, stack, repo, live, appStore, screenshots } =
+  project.data;
+const { Content } = await render(project);
+
+const startedLabel = started.toLocaleDateString('en-US', { month: 'short', year: 'numeric', timeZone: 'UTC' });
+const kindLabel = kind === 'work' ? 'Work' : 'Personal';
+---
+
+<BaseLayout title={name} description={oneLiner}>
+  <article class="container page">
+    <header>
+      <ul class="tags" aria-label="Project type">
+        <li><Tag>{kindLabel}</Tag></li>
+        <li><Tag>{layer}</Tag></li>
+      </ul>
+      <h1>{name}</h1>
+      <p class="one-liner">{oneLiner}</p>
+      {
+        (repo || live || appStore) && (
+          <p class="actions">
+            {repo && <Button href={repo}>Source</Button>}
+            {live && <Button href={live} variant="outline">Live site</Button>}
+            {appStore && <Button href={appStore} variant="outline">App Store</Button>}
+          </p>
+        )
+      }
+    </header>
+
+    <div class="layout">
+      <div class="main">
+        {
+          screenshots.length > 0 && (
+            <div class="shots">
+              {screenshots.map((shot) => (
+                <figure>
+                  <Image src={shot.src} alt={shot.alt} widths={[640, 1280]} sizes="(min-width: 64rem) 720px, 100vw" loading="lazy" />
+                </figure>
+              ))}
+            </div>
+          )
+        }
+        <div class="prose"><Content /></div>
+
+        <section aria-labelledby="stack-title" class="stack">
+          <h2 id="stack-title">Stack</h2>
+          <ul class="tags">
+            {stack.map((item) => <li><Tag>{item}</Tag></li>)}
+          </ul>
+        </section>
+
+        {
+          related.length > 0 && (
+            <section aria-labelledby="related-title" class="related">
+              <SectionHeader eyebrow="Press box" title="Related posts" id="related-title" />
+              {related.map((post) => <PostRow post={post} />)}
+            </section>
+          )
+        }
+      </div>
+
+      <aside class="side">
+        <BoxScore
+          title="Spec sheet"
+          items={[
+            { label: 'Type', value: `${kindLabel}, ${layer}` },
+            { label: 'Role', value: role },
+            { label: 'Platform', value: platform },
+            { label: 'Started', value: startedLabel },
+            { label: 'Status', value: status },
+          ]}
+        />
+      </aside>
+    </div>
+
+    <nav class="pager" aria-label="More projects">
+      {previous ? <PostCard direction="prev" title={previous.data.name} href={`/projects/${previous.id}/`} /> : <span />}
+      {next ? <PostCard direction="next" title={next.data.name} href={`/projects/${next.id}/`} /> : <span />}
+    </nav>
+  </article>
+</BaseLayout>
+
+<style>
+  .page {
+    padding-block: var(--space-6);
+  }
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1);
+    margin: 0 0 var(--space-2);
+    padding: 0;
+    list-style: none;
+  }
+  h1 {
+    font-size: var(--text-hero);
+    overflow-wrap: anywhere;
+  }
+  .one-liner {
+    max-width: var(--measure);
+    margin: var(--space-2) 0 var(--space-3);
+    font-size: var(--text-long);
+    line-height: var(--leading-long);
+    color: var(--text-body);
+  }
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin: 0;
+  }
+  .layout {
+    display: grid;
+    gap: var(--space-6);
+    margin-top: var(--space-6);
+  }
+  .main {
+    min-width: 0;
+  }
+  .shots {
+    display: grid;
+    gap: var(--space-2);
+    margin-bottom: var(--space-4);
+  }
+  figure {
+    margin: 0;
+  }
+  figure :global(img) {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--line);
+  }
+  .prose {
+    max-width: var(--measure);
+    font-size: var(--text-long);
+    line-height: var(--leading-long);
+    color: var(--text-body);
+  }
+  .stack,
+  .related {
+    margin-top: var(--space-6);
+  }
+  .stack h2 {
+    margin-bottom: var(--space-2);
+    font-size: var(--text-card);
+  }
+  .pager {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+    gap: var(--space-2);
+    margin-top: var(--space-8);
+  }
+  @media (min-width: 64rem) {
+    .layout {
+      grid-template-columns: minmax(0, 1fr) 20rem;
+    }
+    .side {
+      position: sticky;
+      top: var(--space-3);
+      align-self: start;
+    }
+  }
+</style>
