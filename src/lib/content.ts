@@ -53,3 +53,13 @@ export async function getScoreboardTiles(): Promise<ScoreboardTile[]> {
     value: data.startYear !== undefined ? year - data.startYear + 1 : (data.value ?? ''),
   }));
 }
+
+/** Roles newest first; ties put the ongoing role ahead. */
+export async function getRoles() {
+  const roles = await getCollection('roles');
+  return roles.sort(
+    (a, b) =>
+      b.data.start.valueOf() - a.data.start.valueOf() ||
+      (b.data.end?.valueOf() ?? Infinity) - (a.data.end?.valueOf() ?? Infinity),
+  );
+}
