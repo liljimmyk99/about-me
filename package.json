@@ -4,12 +4,13 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "dev": "astro dev",
+    "dev": "astro dev --host",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
     "check": "astro check",
-    "check:links": "node scripts/check-links.mjs"
+    "check:links": "node scripts/check-links.mjs",
+    "check:mobile": "node scripts/check-mobile-layout.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^8.1.2",
@@ -24,6 +25,7 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.12",
+    "playwright-core": "^1.64.1",
     "typescript": "^6.0.3"
   }
 }

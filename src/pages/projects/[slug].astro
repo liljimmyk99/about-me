@@ -126,14 +126,38 @@ const kindLabel = kind === 'work' ? 'Work' : 'Personal';
     const track = root.querySelector<HTMLElement>('[data-track]');
     const status = root.querySelector<HTMLElement>('[data-status]');
     if (!track) return;
-    const slides = track.children.length;
-    const go = (dir: number) => track.scrollBy({ left: dir * track.clientWidth });
+    const slides = [...track.children] as HTMLElement[];
+    // Measure each slide's real position: stepping by the track width ignores the gap between
+    // slides, so the browser snapped to the wrong slide (or back to the same one)
+    const offsetOf = (slide: HTMLElement) => slide.offsetLeft - slides[0].offsetLeft;
+    const nearest = () =>
+      slides.reduce(
+        (best, slide, i) =>
+          Math.abs(offsetOf(slide) - track.scrollLeft) < Math.abs(offsetOf(slides[best]) - track.scrollLeft) ? i : best,
+        0,
+      );
+    // The slide we're on or heading to; buttons step from here so quick taps don't stall mid-scroll
+    let index = 0;
+    const go = (dir: number) => {
+      index = Math.min(Math.max(index + dir, 0), slides.length - 1);
+      track.scrollTo({ left: offsetOf(slides[index]) });
+    };
     root.querySelector('[data-prev]')?.addEventListener('click', () => go(-1));
     root.querySelector('[data-next]')?.addEventListener('click', () => go(1));
     track.addEventListener('scroll', () => {
-      const index = Math.round(track.scrollLeft / track.clientWidth) + 1;
-      if (status) status.textContent = `${index} / ${slides}`;
+      if (status) status.textContent = `${nearest() + 1} / ${slides.length}`;
     });
+    // Swipes move the track directly, so pick up the slide they land on once scrolling stops
+    const sync = () => (index = nearest());
+    if ('onscrollend' in window) {
+      track.addEventListener('scrollend', sync);
+    } else {
+      let settle: ReturnType<typeof setTimeout>;
+      track.addEventListener('scroll', () => {
+        clearTimeout(settle);
+        settle = setTimeout(sync, 400);
+      });
+    }
   });
 </script>
 
@@ -195,7 +219,9 @@ const kindLabel = kind === 'work' ? 'Work' : 'Personal';
   figure {
     flex: 0 0 100%;
     margin: 0;
-    scroll-snap-align: start;
+    scroll-snap-align: center;
+    /* A fast flick moves one slide, not several */
+    scroll-snap-stop: always;
   }
   .controls {
     display: flex;

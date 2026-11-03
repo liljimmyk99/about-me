@@ -10,6 +10,8 @@ interface Props {
 const { roles } = Astro.props;
 
 const leagueLabels = { career: 'Career', community: 'Community' } as const;
+// Phones show this many rows until "Show all" is tapped; tablet and up always show every row
+const initialRows = 6;
 
 function season({ start, end }: CollectionEntry<'roles'>['data']) {
   const from = start.getUTCFullYear();
@@ -30,7 +32,7 @@ function season({ start, end }: CollectionEntry<'roles'>['data']) {
     </div>
     <ul>
       {
-        roles.map(({ data: role }) => {
+        roles.map(({ data: role }, i) => {
           const expandable = role.bullets.length > 0 || role.link;
           const row = (
             <>
@@ -43,7 +45,7 @@ function season({ start, end }: CollectionEntry<'roles'>['data']) {
             </>
           );
           return (
-            <li>
+            <li class:list={{ extra: i >= initialRows }}>
               {expandable ? (
                 <details>
                   <summary class="row">
@@ -74,27 +76,62 @@ function season({ start, end }: CollectionEntry<'roles'>['data']) {
       }
     </ul>
   </div>
+  {roles.length > initialRows && <button class="show-all" type="button">Show all {roles.length} roles</button>}
 </div>
+
+<!-- Inline so the extra rows fold before first paint; without JS every row stays visible -->
+<script is:inline>
+  (() => {
+    const table = document.currentScript.previousElementSibling;
+    const button = table.querySelector('.show-all');
+    if (!button) return;
+    table.dataset.collapsed = '';
+    button.addEventListener('click', () => {
+      delete table.dataset.collapsed;
+      // The button goes away, so move focus to the first row it revealed
+      const first = table.querySelector('.extra');
+      first.tabIndex = -1;
+      first.focus();
+    });
+  })();
+</script>
 
 <style>
   .stat-table {
     background: var(--surface-deep);
     border: 1px solid var(--line);
-    /* The table scrolls inside its own box on phones, never the page */
+    /* Safety net: if the table ever outgrows its box, it scrolls inside it, never the page */
     overflow-x: auto;
   }
-  .inner {
-    min-width: 42rem;
-  }
-  .head,
+  /* Phones: each row stacks into a card (season + league, then position, then team) */
   .row {
     display: grid;
-    grid-template-columns: 7rem 1.6fr 1.6fr 8rem 2.75rem;
+    grid-template-columns: 1fr auto 2.75rem;
+    grid-template-areas:
+      'season league chevron'
+      'position position position'
+      'team team team';
     align-items: center;
     column-gap: var(--space-2);
     padding-inline: var(--space-2);
   }
+  .season {
+    grid-area: season;
+  }
+  .team {
+    grid-area: team;
+  }
+  .position {
+    grid-area: position;
+  }
+  .league {
+    grid-area: league;
+  }
+  .chevron {
+    grid-area: chevron;
+  }
   .head {
+    display: none;
     padding-block: var(--space-1);
     background: var(--home);
     font-family: var(--font-label);
@@ -168,7 +205,6 @@ function season({ start, end }: CollectionEntry<'roles'>['data']) {
   }
   .detail {
     padding: var(--space-1) var(--space-2) var(--space-2);
-    padding-left: calc(var(--space-2) + 7rem + var(--space-2));
     background: var(--surface);
   }
   .bullets {
@@ -180,5 +216,64 @@ function season({ start, end }: CollectionEntry<'roles'>['data']) {
   .bullets li {
     padding: 2px 0;
     border: 0;
+  }
+  .stat-table[data-collapsed] .extra {
+    display: none;
+  }
+  .show-all {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: var(--touch-target);
+    font-family: var(--font-label);
+    font-size: var(--text-label-lg);
+    font-weight: 700;
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    color: var(--gold);
+    background: var(--surface);
+    border: 0;
+    border-top: 1px solid var(--line);
+    cursor: pointer;
+  }
+  .stat-table[data-collapsed] .show-all {
+    display: flex;
+  }
+  .detail > a {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--touch-target);
+  }
+  /* Tablet and up: a real table, one row per role */
+  @media (min-width: 48rem) {
+    .inner {
+      min-width: 42rem;
+    }
+    .head,
+    .row {
+      display: grid;
+      grid-template-columns: 7rem 1.6fr 1.6fr 8rem 2.75rem;
+      grid-template-areas: none;
+      align-items: center;
+      column-gap: var(--space-2);
+      padding-inline: var(--space-2);
+    }
+    .season,
+    .team,
+    .position,
+    .league,
+    .chevron {
+      grid-area: auto;
+    }
+    .detail {
+      padding-left: calc(var(--space-2) + 7rem + var(--space-2));
+    }
+    .stat-table[data-collapsed] .extra {
+      display: list-item;
+    }
+    .stat-table[data-collapsed] .show-all {
+      display: none;
+    }
   }
 </style>

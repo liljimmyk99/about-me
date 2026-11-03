@@ -27,7 +27,8 @@ body {
   font-family: var(--font-body);
   font-size: var(--text-ui);
   line-height: var(--leading-ui);
-  overflow-x: hidden;
+  /* clip, not hidden: no scroll container, so sticky elements keep working */
+  overflow-x: clip;
 }
 
 main {

@@ -173,6 +173,11 @@ const otherUniforms = roles.filter(({ data }) => data.league === 'community');
     letter-spacing: var(--tracking-label);
     text-transform: uppercase;
   }
+  .more a {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--touch-target);
+  }
   .off {
     display: grid;
     gap: var(--space-4);
@@ -201,9 +206,12 @@ const otherUniforms = roles.filter(({ data }) => data.league === 'community');
   figure :global(img) {
     display: block;
     width: 100%;
-    max-height: 32rem;
+    /* Phones: keep the portrait under half a screen */
+    max-height: 20rem;
     object-fit: cover;
     border: 1px solid var(--line);
+    /* Shows while the lazy photo loads, so the frame reads as loading, not missing */
+    background: var(--surface);
   }
   .fans {
     display: grid;
@@ -221,6 +229,9 @@ const otherUniforms = roles.filter(({ data }) => data.league === 'community');
     .off {
       grid-template-columns: 1fr 1fr;
       align-items: start;
+    }
+    figure :global(img) {
+      max-height: 32rem;
     }
   }
 </style>
