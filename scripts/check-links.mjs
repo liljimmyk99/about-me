@@ -33,6 +33,10 @@ function hasId(file, id) {
 // Targets known to be missing until content lands. Delete each entry once its file exists.
 const pending = new Set(['/about-me/resume.pdf']);
 
+// Links that are meant to land on the 404 page (the new-portfolio-site post shows it off). The 404 page itself is built
+// as dist/404.html, so only the trailing-slash-free path is listed here.
+const intentional404 = new Set(['/about-me/blog/404-page']);
+
 const problems = [];
 let checked = 0;
 
@@ -53,6 +57,10 @@ for (const file of htmlFiles(dist)) {
       continue;
     }
     if (pending.has(resolved.pathname)) continue;
+    if (intentional404.has(resolved.pathname.replace(/\/$/, ''))) {
+      if (!existsSync(join(dist, '404.html'))) problems.push(`${page}: ${url} should show the 404 page, but dist/404.html is missing`);
+      continue;
+    }
     const target = resolveTarget(resolved.pathname);
     if (!target) problems.push(`${page}: ${url} does not exist`);
     else if (resolved.hash.length > 1 && !hasId(target, resolved.hash.slice(1))) {
