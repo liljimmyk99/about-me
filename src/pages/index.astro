@@ -100,7 +100,7 @@ const otherUniforms = roles.filter(({ data }) => data.league === 'community');
             level="h3"
             items={[
               { label: 'City', value: team.city },
-              { label: 'Best moment', value: team.bestMoment },
+              ...(team.bestMoment ? [{ label: 'Best moment', value: team.bestMoment }] : []),
             ]}
           />
         ))

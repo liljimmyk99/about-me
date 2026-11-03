@@ -1,5 +1,5 @@
 [
-  { "id": "ford-credit-style-guide", "status": "in-progress", "text": "Standardizing the Ford Credit iOS codebase", "href": "/about/" },
-  { "id": "etfcg", "status": "in-progress", "text": "Co-leading the ETFCG program", "href": "/about/" },
-  { "id": "black-belt", "status": "final", "text": "Third-degree black belt earned", "href": "/about/" }
+  { "id": "workout-tracker", "status": "up-next", "text": "Personalized Workout Tracker", "href": "/projects/workout-tracker/" },
+  { "id": "penny-pincher", "status": "in-progress", "text": "Personalized Finance Tracker", "href": "/projects/penny-pincher/" },
+  { "id": "macpardy", "status": "in-progress", "text": "Creating a Jeopardy game", "href": "/projects/macpardy/" }
 ]

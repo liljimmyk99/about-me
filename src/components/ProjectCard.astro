@@ -39,6 +39,7 @@ const kindLabel = kind === 'work' ? 'Work' : 'Personal';
     position: relative;
     display: flex;
     flex-direction: column;
+    height: 100%;
     background: var(--surface);
     border: 1px solid var(--line);
     border-radius: var(--radius);
@@ -48,6 +49,7 @@ const kindLabel = kind === 'work' ? 'Work' : 'Personal';
     border-color: var(--gold);
   }
   .shot {
+    flex: none;
     aspect-ratio: 16 / 9;
     background: var(--surface-deep);
     border-bottom: 1px solid var(--line);

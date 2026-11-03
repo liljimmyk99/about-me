@@ -54,14 +54,16 @@ export async function getScoreboardTiles(): Promise<ScoreboardTile[]> {
   }));
 }
 
-/** Roles newest first; ties put the ongoing role ahead. */
+/** Ongoing roles first (newest start first), then ended roles by when they ended, most recent first. */
 export async function getRoles() {
   const roles = await getCollection('roles');
-  return roles.sort(
-    (a, b) =>
-      b.data.start.valueOf() - a.data.start.valueOf() ||
-      (b.data.end?.valueOf() ?? Infinity) - (a.data.end?.valueOf() ?? Infinity),
-  );
+  return roles.sort((a, b) => {
+    const aOngoing = a.data.end === undefined;
+    const bOngoing = b.data.end === undefined;
+    if (aOngoing !== bOngoing) return aOngoing ? -1 : 1;
+    const byEnd = (b.data.end?.valueOf() ?? 0) - (a.data.end?.valueOf() ?? 0);
+    return byEnd || b.data.start.valueOf() - a.data.start.valueOf();
+  });
 }
 
 /** Featured projects in their `order`, capped for the home page highlight reel. */
