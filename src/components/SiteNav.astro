@@ -16,7 +16,8 @@ const links = [
 <header class="site-header">
   <div class="container bar">
     <a class="brand" href={`${base}/`}>{site.name}</a>
-    <nav aria-label="Primary">
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">Menu</button>
+    <nav id="primary-nav" aria-label="Primary">
       <ul>
         {
           links.map((link) => (
@@ -31,6 +32,30 @@ const links = [
     </nav>
   </div>
 </header>
+
+<!-- Inline so the phone menu collapses before first paint (no layout shift); without JS the links stay visible -->
+<script is:inline>
+  (() => {
+    const header = document.currentScript.previousElementSibling;
+    const toggle = header.querySelector('.menu-toggle');
+    const setOpen = (open) => {
+      header.dataset.menu = open ? 'open' : 'closed';
+      toggle.setAttribute('aria-expanded', String(open));
+    };
+    setOpen(false);
+    toggle.addEventListener('click', () => setOpen(header.dataset.menu === 'closed'));
+    header.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && header.dataset.menu === 'open') {
+        setOpen(false);
+        toggle.focus();
+      }
+    });
+    // Same-page links (Career stats) don't reload, so close the menu by hand
+    header.querySelector('nav').addEventListener('click', (event) => {
+      if (event.target.closest('a')) setOpen(false);
+    });
+  })();
+</script>
 
 <style>
   .site-header {
@@ -81,5 +106,69 @@ const links = [
   nav a[aria-current='page'] {
     color: var(--gold);
     border-bottom-color: var(--gold);
+  }
+  /* Phones: links fold behind a Menu toggle once the inline script has run */
+  .menu-toggle {
+    display: none;
+    align-items: center;
+    gap: var(--space-1);
+    min-height: var(--touch-target);
+    padding: 0 var(--space-2);
+    font-family: var(--font-label);
+    font-size: var(--text-label-lg);
+    font-weight: 700;
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    color: var(--text);
+    background: transparent;
+    border: 1px solid var(--line);
+    cursor: pointer;
+  }
+  .menu-toggle::after {
+    content: '';
+    width: 0.5rem;
+    height: 0.5rem;
+    margin-top: -0.25rem;
+    border-right: 2px solid var(--gold);
+    border-bottom: 2px solid var(--gold);
+    transform: rotate(45deg);
+    transition: transform 0.15s ease;
+  }
+  .menu-toggle[aria-expanded='true']::after {
+    margin-top: 0.25rem;
+    transform: rotate(-135deg);
+  }
+  .site-header[data-menu] .menu-toggle {
+    display: inline-flex;
+  }
+  .site-header[data-menu] nav {
+    flex-basis: 100%;
+  }
+  .site-header[data-menu='closed'] nav {
+    display: none;
+  }
+  .site-header[data-menu] ul {
+    flex-direction: column;
+    padding-bottom: var(--space-1);
+  }
+  /* Full-width rows so short links like Bio are easy to tap */
+  .site-header[data-menu] nav a {
+    display: flex;
+  }
+  @media (min-width: 48rem) {
+    .site-header[data-menu] .menu-toggle {
+      display: none;
+    }
+    .site-header[data-menu] nav {
+      display: block;
+      flex-basis: auto;
+    }
+    .site-header[data-menu] ul {
+      flex-direction: row;
+      padding-bottom: 0;
+    }
+    .site-header[data-menu] nav a {
+      display: inline-flex;
+    }
   }
 </style>

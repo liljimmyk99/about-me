@@ -30,6 +30,7 @@ const rendered = await Promise.all(
       widths={[320, 640]}
       sizes="(min-width: 48rem) 320px, 100vw"
       loading="eager"
+      fetchpriority="high"
     />
     <div class="intro">
       <p class="eyebrow">Player bio</p>
@@ -119,6 +120,8 @@ const rendered = await Promise.all(
     max-width: 20rem;
     height: auto;
     border: 1px solid var(--line);
+    /* Shows while the photo loads, so the frame reads as loading, not missing */
+    background: var(--surface);
   }
   .eyebrow {
     margin: 0 0 var(--space-1);
@@ -164,19 +167,27 @@ const rendered = await Promise.all(
     margin: 0;
     overflow-wrap: anywhere;
   }
+  /* Phones and tablets: the chapter bar is one swipeable row that sticks to the top while reading */
   .chapter-bar {
+    position: sticky;
+    top: 0;
+    z-index: 1;
     margin-top: var(--space-6);
+    background: var(--bg);
   }
   .chapter-bar ul {
     display: flex;
-    flex-wrap: wrap;
     gap: var(--space-1);
     margin: 0;
     padding: var(--space-1) 0;
     list-style: none;
     border-block: 1px solid var(--line);
+    overflow-x: auto;
+    scrollbar-width: none;
   }
   .chapter-bar a {
+    flex: none;
+    white-space: nowrap;
     display: inline-flex;
     align-items: center;
     min-height: var(--touch-target);
@@ -203,7 +214,8 @@ const rendered = await Promise.all(
   }
   .story > section {
     margin-bottom: var(--space-8);
-    scroll-margin-top: var(--space-4);
+    /* Clears the sticky chapter bar */
+    scroll-margin-top: calc(var(--touch-target) + var(--space-5));
   }
   .prose {
     max-width: var(--measure);
@@ -220,6 +232,7 @@ const rendered = await Promise.all(
     width: 100%;
     height: auto;
     border: 1px solid var(--line);
+    background: var(--surface);
   }
   figcaption {
     margin-top: var(--space-1);
@@ -230,6 +243,8 @@ const rendered = await Promise.all(
     display: grid;
     align-content: start;
     gap: var(--space-3);
+    /* Single column: show the box scores before the story instead of after all five chapters */
+    order: -1;
   }
   .intangibles {
     margin: 0;
@@ -273,12 +288,23 @@ const rendered = await Promise.all(
     }
   }
   @media (min-width: 64rem) {
+    .chapter-bar {
+      position: static;
+    }
+    .chapter-bar ul {
+      flex-wrap: wrap;
+      overflow-x: visible;
+    }
+    .story > section {
+      scroll-margin-top: var(--space-4);
+    }
     .layout {
       grid-template-columns: minmax(0, 1fr) 22rem;
     }
     .sidebar {
       position: sticky;
       top: var(--space-3);
+      order: 0;
     }
   }
 </style>

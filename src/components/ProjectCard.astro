@@ -17,13 +17,15 @@ const kindLabel = kind === 'work' ? 'Work' : 'Personal';
 ---
 
 <article class="card">
-  <div class="shot">
-    {
-      screenshot && (
+  {
+    screenshot ? (
+      <div class="shot">
         <Image src={screenshot.src} alt={screenshot.alt} widths={[400, 800]} sizes="(min-width: 48rem) 380px, 100vw" loading="lazy" />
-      )
-    }
-  </div>
+      </div>
+    ) : (
+      <div class="shot fallback" aria-hidden="true">{name}</div>
+    )
+  }
   <div class="body">
     <ul class="strip" aria-label="Project type and stack">
       <li><Tag>{kindLabel}</Tag></li>
@@ -60,6 +62,25 @@ const kindLabel = kind === 'work' ? 'Work' : 'Personal';
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+  /* No screenshot yet: a name plate keeps the cards in a row aligned. Phones stack the
+     cards one per row, so there the plate would only be empty space and is dropped. */
+  .fallback {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-3);
+    font-family: var(--font-display);
+    font-size: var(--text-card);
+    line-height: 1.1;
+    text-align: center;
+    color: var(--text-muted);
+    background: var(--home);
+  }
+  @media (min-width: 40rem) {
+    .fallback {
+      display: flex;
+    }
   }
   .body {
     padding: var(--space-2);

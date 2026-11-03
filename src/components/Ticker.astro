@@ -30,16 +30,22 @@ const labels: Record<TickerStatus, string> = {
     background: var(--home);
     border-bottom: 1px solid var(--line);
   }
+  /* Phones: one row that swipes sideways; the next item peeks in from the edge */
   ul {
     display: flex;
-    flex-wrap: wrap;
+    gap: var(--space-3);
     margin: 0;
     padding-block: 0;
     list-style: none;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--gutter);
+    scrollbar-width: none;
   }
   li {
-    flex: 1 1 14rem;
+    flex: 0 0 85%;
     min-width: 0;
+    scroll-snap-align: start;
   }
   a {
     display: flex;
@@ -73,12 +79,28 @@ const labels: Record<TickerStatus, string> = {
     background: var(--text);
   }
   .text {
+    min-width: 0;
+    overflow: hidden;
     font-size: var(--text-ui);
-    overflow-wrap: anywhere;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
   @media (min-width: 48rem) {
+    ul {
+      flex-wrap: wrap;
+      gap: 0;
+      overflow-x: visible;
+    }
+    li {
+      flex: 1 1 14rem;
+    }
     li + li {
       padding-left: var(--space-3);
+    }
+    .text {
+      overflow: visible;
+      white-space: normal;
+      overflow-wrap: anywhere;
     }
   }
 </style>

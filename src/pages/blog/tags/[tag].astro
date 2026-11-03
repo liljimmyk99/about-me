@@ -44,6 +44,11 @@ const { tag, tags, posts } = Astro.props;
     letter-spacing: var(--tracking-label);
     text-transform: uppercase;
   }
+  .back a {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--touch-target);
+  }
   .tags {
     display: flex;
     flex-wrap: wrap;
