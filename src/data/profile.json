@@ -1,7 +1,7 @@
 [
   {
     "id": "profile",
-    "scoutingSummary": "An iOS developer and technical project manager from Bensalem, PA who leads, teaches and mentors. Strengths: communication, steady mobile engineering and bringing people along. Plays best when helping others get better: karate students, robotics teams and the 250-member ETFCG program he co-leads.",
+    "scoutingSummary": "An iOS developer and technical project manager from Bensalem, PA who leads, serves and volunteers. Strengths: direct communicator, consistly seeks feedback to improve, versatile and open to change. Plays best when helping others get better: peers, students, and community members.",
     "vitals": [
       {
         "label": "Position",
@@ -9,7 +9,7 @@
       },
       {
         "label": "Team",
-        "value": "Ford Credit Mobile Platform"
+        "value": "Ford Credit Mobile Engineering"
       },
       {
         "label": "Hometown",
@@ -21,11 +21,19 @@
       },
       {
         "label": "Degree",
-        "value": "BS Human-Centered Design & Development"
+        "value": "B.S. Human-Centered Design & Development"
       },
       {
-        "label": "Belt",
-        "value": "3rd-degree black"
+        "label": "Projects",
+        "value": "6+"
+      },
+      {
+        "label": "iOS Experience",
+        "value": "3 Years"
+      },
+      {
+        "label": "Dev Experience",
+        "value": "6 Years"
       }
     ],
     "intangibles": [
@@ -39,7 +47,7 @@
       },
       {
         "title": "Mentor",
-        "text": "A mentor to my high school robotics team and my karate students, offering both professional and personal advice."
+        "text": "A mentor to my high school robotics team & Penn State IST students, offering both professional and personal advice."
       },
       {
         "title": "Leadership",
@@ -48,7 +56,7 @@
     ],
     "nowSigning": {
       "heading": "Now signing",
-      "text": "Open to conversations about mobile engineering and technical program management."
+      "text": "Open to conversations about iOS/Swift & GoLang engineering"
     }
   }
 ]
