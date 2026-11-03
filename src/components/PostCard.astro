@@ -1,0 +1,57 @@
+---
+import { withBase } from '../lib/url';
+
+interface Props {
+  direction: 'prev' | 'next';
+  title: string;
+  /** Root-relative path, e.g. `/blog/my-post/`. */
+  href: string;
+  /** Eyebrow override; defaults to Previous / Next. */
+  label?: string;
+}
+
+const { direction, title, href, label } = Astro.props;
+const eyebrow = label ?? (direction === 'prev' ? 'Previous' : 'Next');
+---
+
+<a class:list={['post-card', direction]} href={withBase(href)} rel={direction}>
+  <span class="eyebrow">
+    {direction === 'prev' && <span aria-hidden="true">&larr; </span>}{eyebrow}{direction === 'next' && <span aria-hidden="true"> &rarr;</span>}
+  </span>
+  <span class="title">{title}</span>
+</a>
+
+<style>
+  .post-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    min-height: var(--touch-target);
+    padding: var(--space-2);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    color: var(--text);
+    text-decoration: none;
+  }
+  .post-card:hover {
+    border-color: var(--gold);
+  }
+  .next {
+    text-align: right;
+  }
+  .eyebrow {
+    font-family: var(--font-label);
+    font-size: var(--text-label-lg);
+    font-weight: 700;
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .title {
+    font-family: var(--font-display);
+    font-size: var(--text-card);
+    line-height: 1.1;
+    overflow-wrap: anywhere;
+  }
+</style>

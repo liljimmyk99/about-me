@@ -1,0 +1,18 @@
+---
+import { Code } from 'astro:components';
+import type { BundledLanguage } from 'shiki';
+import { codeHeader } from '../lib/codeHeader';
+
+interface Props {
+  code: string;
+  lang: BundledLanguage;
+  /** Filename shown in the header. */
+  title?: string;
+}
+
+const { code, lang, title } = Astro.props;
+// Same transformer as Markdown fences; the title rides in via the `meta` string.
+const meta = title ? `title="${title}"` : '';
+---
+
+<Code code={code} lang={lang} meta={meta} theme="css-variables" transformers={[codeHeader]} />

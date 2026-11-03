@@ -1,0 +1,37 @@
+---
+interface Props {
+  eyebrow: string;
+  title: string;
+  /** Heading level; pages keep exactly one h1, so sections default to h2. */
+  level?: 'h1' | 'h2' | 'h3';
+  id?: string;
+}
+
+const { eyebrow, title, level: Heading = 'h2', id } = Astro.props;
+---
+
+<header class="section-header">
+  <p class="eyebrow">{eyebrow}</p>
+  <Heading id={id}>{title}</Heading>
+</header>
+
+<style>
+  .section-header {
+    margin-bottom: var(--space-4);
+  }
+  .eyebrow {
+    margin: 0 0 var(--space-1);
+    font-family: var(--font-label);
+    font-size: var(--text-label-lg);
+    font-weight: 700;
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .section-header :global(h1),
+  .section-header :global(h2),
+  .section-header :global(h3) {
+    font-size: var(--text-section);
+    overflow-wrap: anywhere;
+  }
+</style>

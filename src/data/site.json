@@ -1,0 +1,42 @@
+{
+  "site": {
+    "name": "Jimmy Kane",
+    "legalName": "James B Kane IV",
+    "location": "Bensalem, PA",
+    "resume": "/resume.pdf",
+    "socials": {
+      "github": {
+        "label": "GitHub",
+        "href": "https://www.github.com/liljimmyk99"
+      },
+      "linkedin": {
+        "label": "LinkedIn",
+        "href": "https://www.linkedin.com/in/jamesbkaneiv/"
+      },
+      "instagram": {
+        "label": "Instagram",
+        "href": "https://www.instagram.com/liljimmyk/"
+      }
+    },
+    "fan": {
+      "teams": [
+        {
+          "name": "Philadelphia Eagles",
+          "city": "Philadelphia",
+          "bestMoment": "Watching the Birds up close on the field for 2 superbowl runs (2022 & 2024)."
+        },
+        {
+          "name": "Penn State Nittany Lions",
+          "city": "State College",
+          "bestMoment": "Watching 2019 Whiteout against Michigan where they called a timeout to start the game."
+        }
+      ]
+    },
+    "hero": {
+      "eyebrow": "iOS Developer \u00b7 Technical Project Manager",
+      "intro": "I work on the Ford Credit mobile app, previous co-lead a 250-member college graduate program at Ford, and spend my off hours volunteering for FIRST Robotics, Senior High Ministry at Calvary Chapel, and my family."
+    },
+    "bioTeaser": "Born and raised in Bensalem, Pennsylvania, I'm trying to give back to the community that helped me grow up. By day I'm an iOS developer at Ford Credit; the rest of my time goes to working out, volunteering, serving at my church and working Eagles game days.",
+    "jobTitle": "iOS Developer and Technical Project Manager"
+  }
+}

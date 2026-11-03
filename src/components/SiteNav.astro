@@ -1,0 +1,85 @@
+---
+import { getSite } from '../lib/content';
+const site = await getSite();
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const current = Astro.url.pathname;
+
+const links = [
+  { label: 'Career stats', href: `${base}/#career` },
+  { label: 'Highlights', href: `${base}/projects/` },
+  { label: 'Press box', href: `${base}/blog/` },
+  { label: 'Bio', href: `${base}/about/` },
+];
+---
+
+<header class="site-header">
+  <div class="container bar">
+    <a class="brand" href={`${base}/`}>{site.name}</a>
+    <nav aria-label="Primary">
+      <ul>
+        {
+          links.map((link) => (
+            <li>
+              <a href={link.href} aria-current={current.startsWith(link.href) && !link.href.includes('#') ? 'page' : undefined}>
+                {link.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    background: var(--home);
+    border-bottom: 1px solid var(--line);
+  }
+  .bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    column-gap: var(--space-4);
+    row-gap: var(--space-1);
+    padding-block: var(--space-1);
+  }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--touch-target);
+    font-family: var(--font-display);
+    font-size: var(--text-card);
+    letter-spacing: 0.02em;
+    color: var(--text);
+    text-decoration: none;
+  }
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 var(--space-3);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  nav a {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--touch-target);
+    font-family: var(--font-label);
+    font-size: var(--text-label-lg);
+    font-weight: 700;
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    color: var(--text);
+    text-decoration: none;
+    border-bottom: 3px solid transparent;
+  }
+  nav a:hover,
+  nav a[aria-current='page'] {
+    color: var(--gold);
+    border-bottom-color: var(--gold);
+  }
+</style>

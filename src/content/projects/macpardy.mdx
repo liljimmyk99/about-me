@@ -1,0 +1,50 @@
+---
+name: Macpardy
+oneLiner: A native macOS app for hosting a Jeopardy-style trivia night, with phone buzzers over the local network.
+kind: personal
+layer: full-stack
+platform: macOS
+role: Designer and developer
+started: 2026-08-29
+status: In development
+stack: [Swift, SwiftUI, Tuist, WebSocket]
+repo: https://github.com/liljimmyk99/Macpardy
+screenshots:
+  - src: ../../assets/photos/Macpardy/MacpardySpashScreen.png
+    alt: The Macpardy start screen in the host's Control window, with Play, New Board and Edit Board options under the gold Macpardy logo on a dark blue background.
+  - src: ../../assets/photos/Macpardy/MacpardyNewGameScreen.png
+    alt: The New Game dialog over the dimmed start screen, offering Build in the Editor with an Open Editor button, or Import from SpreadSheet with Download Template and Upload SpreadSheet buttons.
+  - src: ../../assets/photos/Macpardy/MacpardyEditGameScreen.png
+    alt: The game editor with round tabs for Macpardy, Double Macpardy and Final Macpardy above a six-column board of placeholder categories and dollar values, with dashed orange outlines on fields that still hold default text and a Save Game button.
+  - src: ../../assets/photos/Macpardy/MacpardyControlBuzzerScreen.png
+    alt: The host's Control window in the setup phase, with editable name and color pickers for three teams and an Add Team tile, and a Phone Buzzers panel showing a QR code, the game PIN 8QCQD8, a local network address and a Start Game button.
+  - src: ../../assets/photos/Macpardy/MacpardyBoardScreen.png
+    alt: The audience Display window showing a game board of six categories, from At the Movies to Brand Names, each with clues from $200 to $1,000, and scores of 0 for Team 1, Team 2 and Team 3 along the bottom.
+  - src: ../../assets/photos/Macpardy/MacpardyBuzzerWebsiteScreen.png
+    alt: The phone buzzer web page on a blue background, confirming "You're Team 1" above a large "You're up!" buzzer button, five timer dots and the status text "Time's up".
+featured: true
+order: 2
+---
+
+## The pregame
+
+A trivia night shouldn't need accounts, a server or an internet connection. Macpardy runs the whole game from one Mac: the host drives a control window, the room watches a full-screen display on a TV or projector, and teams buzz in from their phones over the local network.
+
+## Why did I create this?
+The Jeopardy-like games are either a powerpoint template or a website.  I don't pay for Office-products on my personal machine and the area where I want to play this trivia game does not have reliable internet.  I wanted a self contained app that has keyboard short cuts that make sense that contains native picture support and looks sleek.  Additionally, I wanted to experiment with using AI agents to bring an idea to life rather than doing this by hand.
+
+## The playbook
+
+- Build a game in the editor (6 × 5 boards for two rounds, plus Final Macpardy) with Daily Doubles and optional pictures on clues, or import one from a CSV template.
+- Separate host and audience windows, with a timer, scores, Daily Double and Final wagers.
+- Phone buzzers: scan a QR code, pick a team, buzz in. Fair tie-breaking, a 5 second response timer and wrong-answer lockout.
+- Display animations for the board intro, clue flips and score changes, which can be switched off in Settings.
+- Auto-save, so a game can be resumed after a quit or crash.
+
+## My role
+
+Solo project: product design, the SwiftUI app, the phone buzzer page and the Tuist project tooling.
+
+## Film review
+
+The AI agents perform better than I give a detailed plan that has been gone back and forth with.  I also noticed that hallucinations did not appear as often with this smaller code-base compared to my work environment.  Unsure if that is due to size of the project or the lack of conflicting standards in an existing codebase.

@@ -1,0 +1,115 @@
+---
+// Temporary: remove once the real pages use every component.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import Button from '../components/Button.astro';
+import Tag from '../components/Tag.astro';
+import BoxScore from '../components/BoxScore.astro';
+import PullQuote from '../components/PullQuote.astro';
+import CodeBlock from '../components/CodeBlock.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import PostRow from '../components/PostRow.astro';
+import PostCard from '../components/PostCard.astro';
+import { getCollection } from 'astro:content';
+import { getPosts } from '../lib/content';
+
+const [project] = await getCollection('projects');
+const [post] = await getPosts();
+
+const swift = `struct ContentView: View {
+    var body: some View {
+        Text("Hello, Linc!") // go birds
+            .font(.title)
+    }
+}`;
+---
+
+<BaseLayout title="Styleguide" noindex>
+  <div class="container guide">
+    <SectionHeader eyebrow="Temporary" title="Styleguide" level="h1" />
+
+    <section>
+      <SectionHeader eyebrow="Section header" title="Press box" />
+    </section>
+
+    <section>
+      <SectionHeader eyebrow="Button" title="Buttons" />
+      <p class="row">
+        <Button href="#">Stat sheet</Button>
+        <Button href="#" variant="outline">LinkedIn</Button>
+        <Button>Plain button</Button>
+      </p>
+    </section>
+
+    <section>
+      <SectionHeader eyebrow="Tag" title="Tags" />
+      <p class="row">
+        <Tag>SwiftUI</Tag>
+        <Tag>TypeScript</Tag>
+        <Tag href="#">Linked</Tag>
+        <Tag href="#" active>Active</Tag>
+      </p>
+    </section>
+
+    <section>
+      <SectionHeader eyebrow="Box score" title="Sidebar panel" />
+      <div class="narrow">
+        <BoxScore
+          title="Box score"
+          items={[
+            { label: 'Read time', value: '6 min' },
+            { label: 'Category', value: 'Engineering' },
+            { label: 'Related project', value: 'Placeholder', href: '#' },
+          ]}
+        />
+        <p></p>
+        <BoxScore title="Away" side="away" items={[{ label: 'Hometown', value: 'State College' }]} />
+      </div>
+    </section>
+
+    <section>
+      <SectionHeader eyebrow="Pull quote" title="Quote" />
+      <PullQuote cite="Placeholder attribution">Placeholder pull quote about shipping and showing up.</PullQuote>
+    </section>
+
+    <section>
+      <SectionHeader eyebrow="Cards and rows" title="Project and post" />
+      <div class="narrow"><ProjectCard project={project} /></div>
+      <PostRow post={post} />
+      <div class="pair">
+        <PostCard direction="prev" title="Previous post title" href="/blog/" />
+        <PostCard direction="next" title="Next post title" href="/blog/" />
+      </div>
+    </section>
+
+    <section>
+      <SectionHeader eyebrow="Code" title="Code blocks" />
+      <CodeBlock code={swift} lang="swift" title="ContentView.swift" />
+      <p>Inline <code>code</code> looks like this.</p>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .guide {
+    padding-block: var(--space-6);
+  }
+  section {
+    margin-bottom: var(--space-8);
+  }
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    align-items: center;
+  }
+  .pair {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    gap: var(--space-2);
+    margin-top: var(--space-3);
+  }
+  .narrow {
+    max-width: 24rem;
+  }
+</style>

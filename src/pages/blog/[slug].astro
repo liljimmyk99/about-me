@@ -1,0 +1,27 @@
+---
+import { getEntry, render } from 'astro:content';
+import PostLayout from '../../layouts/PostLayout.astro';
+import { getPosts } from '../../lib/content';
+
+export async function getStaticPaths() {
+  const posts = await getPosts(); // newest first; drafts are excluded in production
+  return Promise.all(
+    posts.map(async (post, i) => ({
+      params: { slug: post.id },
+      props: {
+        post,
+        next: posts[i - 1],
+        previous: posts[i + 1],
+        project: post.data.relatedProject ? await getEntry(post.data.relatedProject) : undefined,
+      },
+    })),
+  );
+}
+
+const { post, next, previous, project } = Astro.props;
+const { Content, headings } = await render(post);
+---
+
+<PostLayout post={post} headings={headings} project={project} previous={previous} next={next}>
+  <Content />
+</PostLayout>

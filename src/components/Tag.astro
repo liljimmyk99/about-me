@@ -1,0 +1,43 @@
+---
+interface Props {
+  /** Renders a link (e.g. to a tag page) when set. */
+  href?: string;
+  active?: boolean;
+}
+
+const { href, active = false } = Astro.props;
+const Element = href !== undefined ? 'a' : 'span';
+---
+
+<Element class:list={['tag', { active }]} href={href} aria-current={active && href ? 'true' : undefined}>
+  <slot />
+</Element>
+
+<style>
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px var(--space-1);
+    font-family: var(--font-label);
+    font-size: var(--text-label);
+    font-weight: 600;
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--text-body);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+  }
+  a.tag {
+    /* Linked tags are interactive: keep the touch target */
+    min-height: var(--touch-target);
+    padding-inline: var(--space-2);
+  }
+  a.tag:hover,
+  .active {
+    color: var(--surface-deep);
+    background: var(--gold);
+    border-color: var(--gold);
+  }
+</style>

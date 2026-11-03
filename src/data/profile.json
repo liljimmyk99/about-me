@@ -1,0 +1,62 @@
+[
+  {
+    "id": "profile",
+    "scoutingSummary": "An iOS developer and technical project manager from Bensalem, PA who leads, serves and volunteers. Strengths: direct communicator, consistly seeks feedback to improve, versatile and open to change. Plays best when helping others get better: peers, students, and community members.",
+    "vitals": [
+      {
+        "label": "Position",
+        "value": "iOS Developer & TPM"
+      },
+      {
+        "label": "Team",
+        "value": "Ford Credit Mobile Engineering"
+      },
+      {
+        "label": "Hometown",
+        "value": "Bensalem, PA"
+      },
+      {
+        "label": "School",
+        "value": "Penn State"
+      },
+      {
+        "label": "Degree",
+        "value": "B.S. Human-Centered Design & Development"
+      },
+      {
+        "label": "Projects",
+        "value": "6+"
+      },
+      {
+        "label": "iOS Experience",
+        "value": "3 Years"
+      },
+      {
+        "label": "Dev Experience",
+        "value": "6 Years"
+      }
+    ],
+    "intangibles": [
+      {
+        "title": "Communicator",
+        "text": "Over five years in customer service, with customers both outside and inside the organizations I worked for."
+      },
+      {
+        "title": "Instructor",
+        "text": "Six years teaching karate to students from age three to adult, three years as a college peer tutor, and now a Senior High Bible Study leader."
+      },
+      {
+        "title": "Mentor",
+        "text": "A mentor to my high school robotics team & Penn State IST students, offering both professional and personal advice."
+      },
+      {
+        "title": "Leadership",
+        "text": "In leadership roles since high school: robotics program manager, volunteer coordinator, tutoring co-coordinator, senior instructor, TPM and co-lead of the 250-member ETFCG program. Many were elected or appointed by peers."
+      }
+    ],
+    "nowSigning": {
+      "heading": "Now signing",
+      "text": "Open to conversations about iOS/Swift & GoLang engineering"
+    }
+  }
+]

@@ -1,0 +1,132 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { getProjects } from '../../lib/content';
+
+const projects = await getProjects();
+const kinds = ['work', 'personal'] as const;
+const layers = [...new Set(projects.map(({ data }) => data.layer))];
+const label = (value: string) => value.replace(/(^|-)(\w)/g, (_, dash, c) => `${dash ? '-' : ''}${c.toUpperCase()}`);
+---
+
+<BaseLayout title="Projects" description="Work and personal projects, with case studies for each.">
+  <div class="container page">
+    <SectionHeader eyebrow="Highlight reel" title="Projects" level="h1" />
+
+    <!-- Filters need JavaScript, so they stay hidden (and every card visible) without it -->
+    <div class="filters" id="filters" hidden>
+      <div role="group" aria-label="Filter by kind">
+        <button type="button" data-filter="kind" data-value="all" aria-pressed="true">All</button>
+        {kinds.map((kind) => <button type="button" data-filter="kind" data-value={kind} aria-pressed="false">{label(kind)}</button>)}
+      </div>
+      <div role="group" aria-label="Filter by layer">
+        <button type="button" data-filter="layer" data-value="all" aria-pressed="true">Any layer</button>
+        {layers.map((layer) => <button type="button" data-filter="layer" data-value={layer} aria-pressed="false">{label(layer)}</button>)}
+      </div>
+    </div>
+    <p class="status visually-hidden" id="filter-status" role="status"></p>
+
+    <ul class="grid" id="project-grid">
+      {
+        projects.map((project) => (
+          <li data-kind={project.data.kind} data-layer={project.data.layer}>
+            <ProjectCard project={project} level="h2" />
+          </li>
+        ))
+      }
+    </ul>
+    <p class="empty" id="empty" hidden>No projects match those filters.</p>
+  </div>
+</BaseLayout>
+
+<script>
+  const filters = document.getElementById('filters');
+  const items = [...document.querySelectorAll<HTMLElement>('#project-grid > li')];
+  const empty = document.getElementById('empty');
+  const status = document.getElementById('filter-status');
+  const active = { kind: 'all', layer: 'all' };
+
+  function apply() {
+    let shown = 0;
+    for (const item of items) {
+      const match =
+        (active.kind === 'all' || item.dataset.kind === active.kind) &&
+        (active.layer === 'all' || item.dataset.layer === active.layer);
+      item.hidden = !match;
+      if (match) shown++;
+    }
+    if (empty) empty.hidden = shown > 0;
+    if (status) status.textContent = `${shown} ${shown === 1 ? 'project' : 'projects'} shown`;
+  }
+
+  if (filters) {
+    filters.hidden = false;
+    filters.addEventListener('click', (event) => {
+      const button = (event.target as HTMLElement).closest<HTMLButtonElement>('button[data-filter]');
+      if (!button) return;
+      const group = button.dataset.filter as 'kind' | 'layer';
+      active[group] = button.dataset.value ?? 'all';
+      filters
+        .querySelectorAll<HTMLButtonElement>(`button[data-filter="${group}"]`)
+        .forEach((b) => b.setAttribute('aria-pressed', String(b === button)));
+      apply();
+    });
+  }
+</script>
+
+<style>
+  .page {
+    padding-block: var(--space-6);
+  }
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-4);
+    margin-bottom: var(--space-4);
+  }
+  .filters[hidden] {
+    display: none;
+  }
+  .filters > div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1);
+  }
+  button {
+    min-height: var(--touch-target);
+    padding: 0 var(--space-2);
+    font-family: var(--font-label);
+    font-size: var(--text-label-lg);
+    font-weight: 700;
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    color: var(--text);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    cursor: pointer;
+  }
+  button:hover {
+    border-color: var(--gold);
+  }
+  button[aria-pressed='true'] {
+    color: var(--surface-deep);
+    background: var(--gold);
+    border-color: var(--gold);
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr));
+    gap: var(--space-3);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .grid li[hidden] {
+    display: none;
+  }
+  .empty {
+    color: var(--text-muted);
+  }
+</style>

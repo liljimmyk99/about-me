@@ -1,0 +1,76 @@
+---
+interface Props {
+  title: string;
+  items: { label: string; value: string; href?: string }[];
+  /** Header bar color: home (green) or away (navy). */
+  side?: 'home' | 'away';
+  level?: 'h2' | 'h3';
+}
+
+const { title, items, side = 'home', level: Heading = 'h2' } = Astro.props;
+---
+
+<aside class="box-score" aria-label={title}>
+  <Heading class:list={['bar', side]}>{title}</Heading>
+  {items.length > 0 && <dl>
+    {
+      items.map((item) => (
+        <div class="row">
+          <dt>{item.label}</dt>
+          <dd>{item.href ? <a href={item.href}>{item.value}</a> : item.value}</dd>
+        </div>
+      ))
+    }
+  </dl>}
+  <slot />
+</aside>
+
+<style>
+  .box-score {
+    background: var(--surface-deep);
+    border: 1px solid var(--line);
+  }
+  .bar {
+    margin: 0;
+    padding: var(--space-1) var(--space-2);
+    font-family: var(--font-label);
+    font-size: var(--text-label-lg);
+    font-weight: 700;
+    letter-spacing: var(--tracking-label);
+    line-height: 1.4;
+    text-transform: uppercase;
+    color: var(--text);
+  }
+  .home {
+    background: var(--home);
+  }
+  .away {
+    background: var(--away);
+  }
+  dl {
+    margin: 0;
+  }
+  .row {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-2);
+    padding: var(--space-1) var(--space-2);
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .row:last-child {
+    border-bottom: 0;
+  }
+  dt {
+    font-family: var(--font-label);
+    font-size: var(--text-label);
+    font-weight: 600;
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  dd {
+    margin: 0;
+    text-align: right;
+    overflow-wrap: anywhere;
+  }
+</style>

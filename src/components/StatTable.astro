@@ -1,0 +1,184 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Tag from './Tag.astro';
+import { withBase } from '../lib/url';
+
+interface Props {
+  roles: CollectionEntry<'roles'>[];
+}
+
+const { roles } = Astro.props;
+
+const leagueLabels = { career: 'Career', community: 'Community' } as const;
+
+function season({ start, end }: CollectionEntry<'roles'>['data']) {
+  const from = start.getUTCFullYear();
+  if (!end) return `${from}–Now`;
+  const to = end.getUTCFullYear();
+  return from === to ? `${from}` : `${from}–${to}`;
+}
+---
+
+<div class="stat-table" role="region" aria-label="Career and community stats" tabindex="0">
+  <div class="inner">
+    <div class="head" aria-hidden="true">
+      <span>Season</span>
+      <span>Team</span>
+      <span>Position</span>
+      <span>League</span>
+      <span></span>
+    </div>
+    <ul>
+      {
+        roles.map(({ data: role }) => {
+          const expandable = role.bullets.length > 0 || role.link;
+          const row = (
+            <>
+              <span class="cell season">{season(role)}</span>
+              <span class="cell team">{role.org}</span>
+              <span class="cell position">{role.title}</span>
+              <span class="cell league">
+                <Tag>{leagueLabels[role.league]}</Tag>
+              </span>
+            </>
+          );
+          return (
+            <li>
+              {expandable ? (
+                <details>
+                  <summary class="row">
+                    {row}
+                    <span class="chevron" aria-hidden="true" />
+                  </summary>
+                  <div class="detail">
+                    {role.bullets.length > 0 && (
+                      <ul class="bullets">
+                        {role.bullets.map((bullet) => (
+                          <li>{bullet}</li>
+                        ))}
+                      </ul>
+                    )}
+                    {role.link && (
+                      <a href={withBase(role.link)}>
+                        Read more<span class="visually-hidden"> about {role.org}</span>
+                      </a>
+                    )}
+                  </div>
+                </details>
+              ) : (
+                <div class="row">{row}<span /></div>
+              )}
+            </li>
+          );
+        })
+      }
+    </ul>
+  </div>
+</div>
+
+<style>
+  .stat-table {
+    background: var(--surface-deep);
+    border: 1px solid var(--line);
+    /* The table scrolls inside its own box on phones, never the page */
+    overflow-x: auto;
+  }
+  .inner {
+    min-width: 42rem;
+  }
+  .head,
+  .row {
+    display: grid;
+    grid-template-columns: 7rem 1.6fr 1.6fr 8rem 2.75rem;
+    align-items: center;
+    column-gap: var(--space-2);
+    padding-inline: var(--space-2);
+  }
+  .head {
+    padding-block: var(--space-1);
+    background: var(--home);
+    font-family: var(--font-label);
+    font-size: var(--text-label);
+    font-weight: 700;
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    color: var(--text);
+  }
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  li {
+    border-bottom: 1px solid var(--line-soft);
+  }
+  li:last-child {
+    border-bottom: 0;
+  }
+  .row {
+    min-height: var(--touch-target);
+    padding-block: var(--space-1);
+  }
+  summary {
+    cursor: pointer;
+    list-style: none;
+  }
+  summary::-webkit-details-marker {
+    display: none;
+  }
+  summary:hover {
+    background: var(--surface);
+  }
+  summary:focus-visible {
+    outline-offset: -3px;
+  }
+  .season {
+    font-family: var(--font-label);
+    font-size: var(--text-label-lg);
+    font-weight: 700;
+    letter-spacing: var(--tracking-label);
+    color: var(--gold);
+  }
+  .team,
+  .position {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+  .position {
+    color: var(--text);
+    font-weight: 600;
+  }
+  .team {
+    color: var(--text-body);
+  }
+  .chevron {
+    justify-self: center;
+    width: 0.6rem;
+    height: 0.6rem;
+    border-right: 2px solid var(--gold);
+    border-bottom: 2px solid var(--gold);
+    transform: rotate(45deg);
+    transition: transform 0.15s ease;
+  }
+  details[open] .chevron {
+    transform: rotate(-135deg);
+  }
+  details[open] summary {
+    background: var(--surface);
+  }
+  .detail {
+    padding: var(--space-1) var(--space-2) var(--space-2);
+    padding-left: calc(var(--space-2) + 7rem + var(--space-2));
+    background: var(--surface);
+  }
+  .bullets {
+    margin: 0 0 var(--space-1);
+    padding-left: var(--space-3);
+    list-style: disc;
+    color: var(--text-body);
+  }
+  .bullets li {
+    padding: 2px 0;
+    border: 0;
+  }
+</style>

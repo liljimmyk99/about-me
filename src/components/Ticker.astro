@@ -1,0 +1,84 @@
+---
+import { getTickerItems, type TickerStatus } from '../lib/content';
+import { withBase } from '../lib/url';
+
+const items = await getTickerItems();
+const labels: Record<TickerStatus, string> = {
+  final: 'Final',
+  'in-progress': 'In progress',
+  'up-next': 'Up next',
+};
+---
+
+<section class="ticker" aria-label="Latest updates">
+  <ul class="container">
+    {
+      items.map((item) => (
+        <li>
+          <a href={withBase(item.href)}>
+            <span class:list={['status', item.status]}>{labels[item.status]}</span>
+            <span class="text">{item.text}</span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</section>
+
+<style>
+  .ticker {
+    background: var(--home);
+    border-bottom: 1px solid var(--line);
+  }
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    padding-block: 0;
+    list-style: none;
+  }
+  li {
+    flex: 1 1 14rem;
+    min-width: 0;
+  }
+  a {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-1);
+    min-height: var(--touch-target);
+    padding: var(--space-1) 0;
+    color: var(--text);
+    text-decoration: none;
+  }
+  a:hover .text {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+  .status {
+    flex: none;
+    padding: 0 var(--space-1);
+    font-family: var(--font-label);
+    font-size: var(--text-label);
+    font-weight: 700;
+    letter-spacing: var(--tracking-label);
+    line-height: 1.6;
+    text-transform: uppercase;
+    color: var(--surface-deep);
+    background: var(--text-muted);
+  }
+  .in-progress {
+    background: var(--gold);
+  }
+  .up-next {
+    background: var(--text);
+  }
+  .text {
+    font-size: var(--text-ui);
+    overflow-wrap: anywhere;
+  }
+  @media (min-width: 48rem) {
+    li + li {
+      padding-left: var(--space-3);
+    }
+  }
+</style>

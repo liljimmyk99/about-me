@@ -1,0 +1,6 @@
+[
+  { "id": "personal-projects", "value": "5", "label": "Personal projects completed" },
+  { "id": "robotics-events", "value": "10", "label": "Robotics events volunteered" },
+  { "id": "linc-seasons", "startYear": 2022, "label": "Seasons at the Linc" },
+  { "id": "black-belt", "value": "3rd", "label": "Degree black belt" }
+]
